@@ -4,7 +4,6 @@ export default function ExportButtonsExample() {
   const mockColors = [
     {
       id: "1",
-      name: "Primary",
       hex: "#6366F1",
       rgb: "rgb(99, 102, 241)",
       hsl: "hsl(239, 84%, 67%)",

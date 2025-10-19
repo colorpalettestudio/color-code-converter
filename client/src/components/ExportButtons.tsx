@@ -6,7 +6,7 @@ import html2canvas from "html2canvas";
 import type { ColorFormats } from "@/lib/colorUtils";
 
 type ExportButtonsProps = {
-  colors: Array<ColorFormats & { name: string; id: string }>;
+  colors: Array<ColorFormats & { id: string }>;
 };
 
 export function ExportButtons({ colors }: ExportButtonsProps) {
@@ -23,7 +23,7 @@ export function ExportButtons({ colors }: ExportButtonsProps) {
 
     yPosition += 15;
 
-    colors.forEach((color, index) => {
+    colors.forEach((color) => {
       if (yPosition > 250) {
         pdf.addPage();
         yPosition = 20;
@@ -32,17 +32,14 @@ export function ExportButtons({ colors }: ExportButtonsProps) {
       pdf.setFillColor(color.hex);
       pdf.rect(20, yPosition, 40, 30, "F");
 
-      pdf.setFontSize(12);
-      pdf.setFont("helvetica", "bold");
-      pdf.text(color.name, 70, yPosition + 8);
-
       pdf.setFontSize(10);
       pdf.setFont("helvetica", "normal");
-      pdf.text(`HEX: ${color.hex}`, 70, yPosition + 16);
-      pdf.text(`RGB: ${color.rgb}`, 70, yPosition + 22);
-      pdf.text(`HSL: ${color.hsl}`, 70, yPosition + 28);
+      pdf.text(`HEX: ${color.hex}`, 70, yPosition + 8);
+      pdf.text(`RGB: ${color.rgb}`, 70, yPosition + 16);
+      pdf.text(`HSL: ${color.hsl}`, 70, yPosition + 24);
+      pdf.text(`CMYK: ${color.cmyk}`, 70, yPosition + 32);
 
-      yPosition += 40;
+      yPosition += 45;
     });
 
     pdf.save("color-palette.pdf");

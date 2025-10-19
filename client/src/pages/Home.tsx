@@ -6,12 +6,12 @@ import { ExportButtons } from "@/components/ExportButtons";
 import { EmptyState } from "@/components/EmptyState";
 import type { ColorFormats } from "@/lib/colorUtils";
 
-type Color = ColorFormats & { name: string; id: string };
+type Color = ColorFormats & { id: string };
 
 export default function Home() {
   const [colors, setColors] = useState<Color[]>([]);
 
-  const handleAddColor = (color: ColorFormats & { name: string }) => {
+  const handleAddColor = (color: ColorFormats) => {
     const newColor: Color = {
       ...color,
       id: Date.now().toString(),
@@ -23,12 +23,6 @@ export default function Home() {
     setColors((prev) => prev.filter((c) => c.id !== id));
   };
 
-  const handleUpdateColorName = (id: string, name: string) => {
-    setColors((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, name } : c))
-    );
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -37,7 +31,7 @@ export default function Home() {
           <div>
             <h2 className="text-2xl font-semibold mb-2">Add Your Brand Colors</h2>
             <p className="text-muted-foreground mb-6">
-              Enter colors in any format and instantly see all conversions
+              Enter colors in any format and instantly convert and copy
             </p>
             <ColorInput onColorAdd={handleAddColor} />
           </div>
@@ -45,10 +39,15 @@ export default function Home() {
           {colors.length > 0 && (
             <>
               <div>
-                <h2 className="text-2xl font-semibold mb-6">Your Color Palette</h2>
+                <h2 className="text-2xl font-semibold mb-4">
+                  Your Colors ({colors.length})
+                </h2>
+                <p className="text-sm text-muted-foreground mb-6">
+                  Select the formats you need and click "Copy Selected" to copy all at once
+                </p>
                 <div
                   id="color-palette-export"
-                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                  className="space-y-4"
                   data-testid="container-color-grid"
                 >
                   {colors.map((color) => (
@@ -56,7 +55,6 @@ export default function Home() {
                       key={color.id}
                       color={color}
                       onDelete={handleDeleteColor}
-                      onUpdateName={handleUpdateColorName}
                     />
                   ))}
                 </div>
