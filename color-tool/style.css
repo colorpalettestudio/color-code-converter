@@ -11,8 +11,8 @@
     --text-primary: #1a1d28;
     --text-secondary: #6b7280;
     --border: #e5e7eb;
-    --primary: #6366f1;
-    --primary-hover: #5558e3;
+    --primary: #ff6b59;
+    --primary-hover: #ff5742;
     --success: #10b981;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -63,7 +63,7 @@ body {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    background: linear-gradient(to right, var(--primary), #8b5cf6);
+    background: linear-gradient(to right, var(--primary), #ff8c42, #ffa042);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -368,8 +368,8 @@ body {
 }
 
 .promo-card {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.1));
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    background: linear-gradient(135deg, rgba(255, 107, 89, 0.05), rgba(255, 140, 66, 0.1));
+    border: 1px solid rgba(255, 107, 89, 0.2);
     border-radius: 12px;
     padding: 2rem;
     display: flex;
