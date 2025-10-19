@@ -156,36 +156,38 @@ export function ConversionResults({
                         />
                       )}
                     </div>
-                    <div className="absolute top-1 right-1 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute top-1 right-1 flex flex-col gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
                       <Button
                         size="icon"
                         variant="secondary"
-                        className="h-6 w-6"
+                        className="h-7 w-7 shadow-sm"
                         onClick={() => onMoveColor(color.id, "up")}
                         disabled={index === 0}
                         data-testid={`button-move-up-${color.id}`}
+                        title="Move up"
                       >
-                        <ChevronUp className="h-3 w-3" />
+                        <ChevronUp className="h-4 w-4" />
                       </Button>
                       <Button
                         size="icon"
                         variant="secondary"
-                        className="h-6 w-6"
+                        className="h-7 w-7 shadow-sm"
                         onClick={() => onMoveColor(color.id, "down")}
                         disabled={index === colors.length - 1}
                         data-testid={`button-move-down-${color.id}`}
+                        title="Move down"
                       >
-                        <ChevronDown className="h-3 w-3" />
+                        <ChevronDown className="h-4 w-4" />
                       </Button>
                       <Button
                         size="icon"
                         variant="destructive"
-                        className="h-6 w-6"
+                        className="h-7 w-7 shadow-sm"
                         onClick={() => onDeleteColor(color.id)}
                         data-testid={`button-delete-${color.id}`}
                         title="Delete color"
                       >
-                        <X className="h-3 w-3" />
+                        <X className="h-4 w-4" />
                       </Button>
                     </div>
                   </div>
