@@ -5,6 +5,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { CrossPromo } from "@/components/CrossPromo";
 import { SEOContent } from "@/components/SEOContent";
 import { Footer } from "@/components/Footer";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import type { ColorFormats } from "@/lib/colorUtils";
 import { exportAsAdobeSwatch } from "@/lib/adobeSwatchExport";
 import jsPDF from "jspdf";
@@ -241,6 +242,16 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      {/* Header with Theme Toggle */}
+      <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto flex h-14 max-w-screen-2xl items-center justify-end px-4">
+          <ThemeToggle />
+        </div>
+      </header>
+
+      {/* Spacer to account for fixed header */}
+      <div className="h-14" />
+
       <HeroSection onConvert={handleConvert} />
       
       {/* Ad Placeholder - Top */}

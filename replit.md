@@ -60,10 +60,12 @@ Preferred communication style: Simple, everyday language.
 - All exports happen client-side for privacy and speed
 
 **UI/UX Features**:
+- Fixed header with theme toggle (light/dark mode) at the top-right
 - Inline format selector with checkboxes (HEX, RGB, HSL, CMYK) integrated into results header
 - Click-to-copy individual color codes with hover elevation and checkmark feedback
 - Single-click color picker activation with full drag support
 - Consolidated action buttons (Add Color, Copy Palette, Export dropdown, More actions)
+- Theme preference persists via localStorage
 
 **SEO Optimization**:
 - Comprehensive meta tags (Open Graph, Twitter Cards)
