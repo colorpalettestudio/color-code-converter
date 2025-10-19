@@ -6,7 +6,7 @@ export function CrossPromo() {
   return (
     <section className="py-12 px-4">
       <div className="container mx-auto max-w-4xl">
-        <Card className="bg-gradient-to-br from-primary/5 via-orange-500/5 to-amber-500/10 border-primary/20">
+        <Card className="bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 border-primary/20">
           <CardContent className="p-8">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="flex-shrink-0">

@@ -112,7 +112,7 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
           🆓 Free, Instant & No Sign-Up Needed
         </Badge>
         
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-orange-500 to-amber-500 bg-clip-text text-transparent" data-testid="text-hero-title">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 bg-clip-text text-transparent" data-testid="text-hero-title">
           Convert All Your Color Codes Instantly
         </h1>
         
