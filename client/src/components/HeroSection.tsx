@@ -1,20 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input";
 import { parseColorInput, type ColorFormats } from "@/lib/colorUtils";
 import { parseStudioCode } from "@/lib/studioCodeParser";
 import { useToast } from "@/hooks/use-toast";
-import { Sparkles, Code2 } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 type HeroSectionProps = {
   onConvert: (colors: Array<ColorFormats & { id: string }>) => void;
@@ -22,8 +13,6 @@ type HeroSectionProps = {
 
 export function HeroSection({ onConvert }: HeroSectionProps) {
   const [inputValue, setInputValue] = useState("");
-  const [studioCode, setStudioCode] = useState("");
-  const [isStudioDialogOpen, setIsStudioDialogOpen] = useState(false);
   const { toast } = useToast();
 
   const handleConvert = () => {
@@ -36,9 +25,38 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
       return;
     }
 
-    const lines = inputValue.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+    const trimmedInput = inputValue.trim();
     const converted: Array<ColorFormats & { id: string }> = [];
 
+    // Check if input is studio code
+    if (trimmedInput.toLowerCase().includes('studiocode') || 
+        (trimmedInput.includes('colorNames=') && trimmedInput.includes('%'))) {
+      try {
+        const hexColors = parseStudioCode(trimmedInput);
+        hexColors.forEach((hex, index) => {
+          const parsed = parseColorInput(hex);
+          if (parsed) {
+            converted.push({ ...parsed, id: `${Date.now()}-${index}` });
+          }
+        });
+
+        if (converted.length > 0) {
+          onConvert(converted);
+          toast({
+            title: "Studio code imported!",
+            description: `${converted.length} color${converted.length > 1 ? "s" : ""} imported successfully`,
+          });
+          return;
+        }
+      } catch (error) {
+        // If studio code parsing fails, fall through to regular parsing
+        console.log('Not valid studio code, trying regular parsing');
+      }
+    }
+
+    // Regular color code parsing
+    const lines = trimmedInput.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+    
     lines.forEach((line, index) => {
       const parsed = parseColorInput(line);
       if (parsed) {
@@ -49,7 +67,7 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
     if (converted.length === 0) {
       toast({
         title: "No valid colors found",
-        description: "Please enter valid color codes (HEX, RGB, HSL, or CMYK)",
+        description: "Please enter valid color codes (HEX, RGB, HSL, CMYK) or studio code",
         variant: "destructive",
       });
       return;
@@ -61,44 +79,6 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
       title: "Colors converted!",
       description: `${converted.length} color${converted.length > 1 ? "s" : ""} successfully converted`,
     });
-  };
-
-  const handleStudioCodeImport = () => {
-    try {
-      const hexColors = parseStudioCode(studioCode);
-      const converted: Array<ColorFormats & { id: string }> = [];
-
-      hexColors.forEach((hex, index) => {
-        const parsed = parseColorInput(hex);
-        if (parsed) {
-          converted.push({ ...parsed, id: `${Date.now()}-${index}` });
-        }
-      });
-
-      if (converted.length === 0) {
-        toast({
-          title: "No valid colors found",
-          description: "Could not extract colors from studio code",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      onConvert(converted);
-      setIsStudioDialogOpen(false);
-      setStudioCode("");
-      
-      toast({
-        title: "Studio code imported!",
-        description: `${converted.length} color${converted.length > 1 ? "s" : ""} imported successfully`,
-      });
-    } catch (error) {
-      toast({
-        title: "Import failed",
-        description: error instanceof Error ? error.message : "Invalid studio code format",
-        variant: "destructive",
-      });
-    }
   };
 
   const loadSampleColors = () => {
@@ -122,7 +102,7 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
 
         <div className="mb-8">
           <Textarea
-            placeholder="Enter colors (one per line or comma-separated)&#10;Examples: #FF6F61, rgb(255, 111, 97), hsl(5, 100%, 69%)"
+            placeholder="Enter colors (one per line or comma-separated)&#10;Examples: #FF6F61, rgb(255, 111, 97), hsl(5, 100%, 69%)&#10;&#10;💡 Tip: You can also paste studio code directly here!"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             className="min-h-32 font-mono text-base mb-4"
@@ -136,40 +116,6 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
               <Sparkles className="h-4 w-4 mr-2" />
               Try sample colors
             </Button>
-            
-            <Dialog open={isStudioDialogOpen} onOpenChange={setIsStudioDialogOpen}>
-              <DialogTrigger asChild>
-                <Button size="lg" variant="outline" data-testid="button-studio-code">
-                  <Code2 className="h-4 w-4 mr-2" />
-                  Import Studio Code
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Import from Studio Code</DialogTitle>
-                  <DialogDescription>
-                    Paste your studio code from Color Palette Fixer or other Color Palette Studio apps
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="space-y-4">
-                  <Input
-                    placeholder="Paste studio code here (e.g., studiocode?dataStyleName=...)"
-                    value={studioCode}
-                    onChange={(e) => setStudioCode(e.target.value)}
-                    className="font-mono text-sm"
-                    data-testid="input-studio-code"
-                  />
-                  <div className="flex gap-2 justify-end">
-                    <Button variant="outline" onClick={() => setIsStudioDialogOpen(false)}>
-                      Cancel
-                    </Button>
-                    <Button onClick={handleStudioCodeImport} data-testid="button-import-studio">
-                      Import Colors
-                    </Button>
-                  </div>
-                </div>
-              </DialogContent>
-            </Dialog>
           </div>
         </div>
 
