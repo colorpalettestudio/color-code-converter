@@ -4,8 +4,71 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useEffect } from "react";
 
 export function SEOContent() {
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I convert multiple colors at once?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Simply enter multiple color codes separated by commas or new lines. Our tool will convert all of them instantly and display them in an organized grid format. You can then copy or export your entire palette."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this tool work offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The conversion happens directly in your browser using JavaScript, so once the page is loaded, the core conversion functionality works without an internet connection. However, you'll need to be online to load the page initially and to use export features."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this converter free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — always! This color code converter is completely free to use with no sign-up required. You can convert unlimited colors and export as many palettes as you need."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What formats can I export to?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can export your converted color palette as a PDF, PNG image, or Adobe Swatch Exchange (.ase) file. The .ase format works directly with Photoshop, Illustrator, and other Adobe Creative Cloud apps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate are the color conversions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our converter uses industry-standard color conversion algorithms to ensure accurate translations between color spaces. Note that some slight variations may occur when converting between RGB/HEX (screen colors) and CMYK (print colors) due to the fundamental differences in how these color models work."
+          }
+        }
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(faqSchema);
+    script.id = 'faq-schema';
+    document.head.appendChild(script);
+
+    return () => {
+      const existingScript = document.getElementById('faq-schema');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
+
   return (
     <section className="py-16 px-4 bg-muted/30">
       <div className="container mx-auto max-w-4xl">

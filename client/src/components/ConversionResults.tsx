@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X, Trash2 } from "lucide-react";
+import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X, Trash2, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -113,13 +113,52 @@ export function ConversionResults({
     }
   };
 
+  const generatePalettePreview = () => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const swatchHeight = 150;
+    const colorsToShow = Math.min(colors.length, 5);
+    const swatchWidth = 600 / colorsToShow;
+
+    canvas.width = 600;
+    canvas.height = swatchHeight;
+
+    colors.slice(0, colorsToShow).forEach((color, index) => {
+      ctx.fillStyle = color.hex;
+      ctx.fillRect(index * swatchWidth, 0, swatchWidth, swatchHeight);
+    });
+
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = 'palette-preview.png';
+        link.href = url;
+        link.click();
+        URL.revokeObjectURL(url);
+        toast({
+          title: "Preview created!",
+          description: "Perfect for sharing on Pinterest or social media",
+        });
+      }
+    }, 'image/png');
+  };
+
   return (
     <section className="py-12 px-4 bg-muted/30" id="results">
       <div className="container mx-auto max-w-6xl">
+        <h2 className="text-3xl font-bold mb-2 text-center" data-testid="heading-conversion-results">
+          HEX to RGB, HSL & CMYK Converter Results
+        </h2>
+        <p className="text-center text-muted-foreground mb-6">
+          Your {colors.length} color{colors.length !== 1 ? 's' : ''} converted across all formats
+        </p>
         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
-          <h2 className="text-2xl font-semibold">
-            Conversion Results ({colors.length})
-          </h2>
+          <div className="text-lg font-semibold">
+            Color Palette ({colors.length})
+          </div>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button 
               onClick={copyEntirePalette} 
@@ -128,6 +167,14 @@ export function ConversionResults({
             >
               <Palette className="h-4 w-4 mr-2" />
               Copy Entire Palette
+            </Button>
+            <Button 
+              onClick={generatePalettePreview} 
+              variant="outline"
+              data-testid="button-palette-preview"
+            >
+              <Camera className="h-4 w-4 mr-2" />
+              Preview Snapshot
             </Button>
             <AlertDialog>
               <AlertDialogTrigger asChild>
