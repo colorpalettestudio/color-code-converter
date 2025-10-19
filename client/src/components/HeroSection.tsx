@@ -91,16 +91,37 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
       lines.push(currentLine.trim());
     }
     
-    // Deduplicate colors by their hex value
-    const seenHex = new Set<string>();
+    // Helper function to extract RGB values from rgb string
+    const extractRGB = (rgbString: string): [number, number, number] | null => {
+      const match = rgbString.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+      if (match) {
+        return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+      }
+      return null;
+    };
+
+    // Helper function to check if two colors are very similar (within threshold)
+    const areColorsSimilar = (rgb1: [number, number, number], rgb2: [number, number, number], threshold = 2): boolean => {
+      return Math.abs(rgb1[0] - rgb2[0]) <= threshold &&
+             Math.abs(rgb1[1] - rgb2[1]) <= threshold &&
+             Math.abs(rgb1[2] - rgb2[2]) <= threshold;
+    };
+
+    // Deduplicate colors by RGB similarity (to handle CMYK rounding issues)
+    const seenColors: Array<{ rgb: [number, number, number], color: ColorFormats }> = [];
     
     lines.forEach((line, index) => {
       const parsed = parseColorInput(line);
       if (parsed) {
-        // Only add if we haven't seen this hex color before
-        if (!seenHex.has(parsed.hex)) {
-          seenHex.add(parsed.hex);
-          converted.push({ ...parsed, id: `${Date.now()}-${index}` });
+        const rgb = extractRGB(parsed.rgb);
+        if (rgb) {
+          // Check if this color is similar to any we've already seen
+          const isDuplicate = seenColors.some(seen => areColorsSimilar(seen.rgb, rgb));
+          
+          if (!isDuplicate) {
+            seenColors.push({ rgb, color: parsed });
+            converted.push({ ...parsed, id: `${Date.now()}-${index}` });
+          }
         }
       }
     });
