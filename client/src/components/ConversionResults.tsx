@@ -156,38 +156,38 @@ export function ConversionResults({
                         />
                       )}
                     </div>
-                    <div className="absolute top-1 right-1 flex flex-col gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Button
                         size="icon"
-                        variant="secondary"
-                        className="h-7 w-7 shadow-sm"
+                        variant="ghost"
+                        className="h-6 w-6 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background"
                         onClick={() => onMoveColor(color.id, "up")}
                         disabled={index === 0}
                         data-testid={`button-move-up-${color.id}`}
                         title="Move up"
                       >
-                        <ChevronUp className="h-4 w-4" />
+                        <ChevronUp className="h-3 w-3" />
                       </Button>
                       <Button
                         size="icon"
-                        variant="secondary"
-                        className="h-7 w-7 shadow-sm"
+                        variant="ghost"
+                        className="h-6 w-6 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background"
                         onClick={() => onMoveColor(color.id, "down")}
                         disabled={index === colors.length - 1}
                         data-testid={`button-move-down-${color.id}`}
                         title="Move down"
                       >
-                        <ChevronDown className="h-4 w-4" />
+                        <ChevronDown className="h-3 w-3" />
                       </Button>
                       <Button
                         size="icon"
-                        variant="destructive"
-                        className="h-7 w-7 shadow-sm"
+                        variant="ghost"
+                        className="h-6 w-6 rounded-full bg-background/80 backdrop-blur-sm hover:bg-destructive hover:text-destructive-foreground"
                         onClick={() => onDeleteColor(color.id)}
                         data-testid={`button-delete-${color.id}`}
                         title="Delete color"
                       >
-                        <X className="h-4 w-4" />
+                        <X className="h-3 w-3" />
                       </Button>
                     </div>
                   </div>
