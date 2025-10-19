@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X, Trash2, Camera } from "lucide-react";
+import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X, Trash2, Camera, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import type { ColorFormats } from "@/lib/colorUtils";
 import { useToast } from "@/hooks/use-toast";
 import { parseColorInput } from "@/lib/colorUtils";
@@ -28,6 +38,7 @@ type ConversionResultsProps = {
   onMoveColor: (id: string, direction: "up" | "down") => void;
   onDeleteColor: (id: string) => void;
   onClearPalette: () => void;
+  onAddColor: (color: ColorFormats) => void;
 };
 
 export function ConversionResults({ 
@@ -39,10 +50,13 @@ export function ConversionResults({
   onUpdateColor,
   onMoveColor,
   onDeleteColor,
-  onClearPalette
+  onClearPalette,
+  onAddColor
 }: ConversionResultsProps) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [editingColorId, setEditingColorId] = useState<string | null>(null);
+  const [addColorDialogOpen, setAddColorDialogOpen] = useState(false);
+  const [newColorInput, setNewColorInput] = useState("");
   const { toast } = useToast();
 
   if (colors.length === 0) return null;
@@ -146,6 +160,25 @@ export function ConversionResults({
     }, 'image/png');
   };
 
+  const handleAddColor = () => {
+    const parsed = parseColorInput(newColorInput.trim());
+    if (parsed) {
+      onAddColor(parsed);
+      setNewColorInput("");
+      setAddColorDialogOpen(false);
+      toast({
+        title: "Color added!",
+        description: "New color added to your palette",
+      });
+    } else {
+      toast({
+        title: "Invalid color",
+        description: "Please enter a valid color code (HEX, RGB, HSL, or CMYK)",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <section className="py-12 px-4 bg-muted/30" id="results">
       <div className="container mx-auto max-w-6xl">
@@ -160,9 +193,54 @@ export function ConversionResults({
             Color Palette ({colors.length})
           </div>
           <div className="flex flex-wrap gap-3 justify-center">
+            <Dialog open={addColorDialogOpen} onOpenChange={setAddColorDialogOpen}>
+              <DialogTrigger asChild>
+                <Button 
+                  variant="default"
+                  data-testid="button-add-color"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Color
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Add New Color</DialogTitle>
+                  <DialogDescription>
+                    Enter a color code in any format (HEX, RGB, HSL, or CMYK)
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid gap-2">
+                    <Label htmlFor="color-input">Color Code</Label>
+                    <Input
+                      id="color-input"
+                      placeholder="e.g., #FF6F61, rgb(255, 111, 97), hsl(5, 100%, 69%)"
+                      value={newColorInput}
+                      onChange={(e) => setNewColorInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          handleAddColor();
+                        }
+                      }}
+                      data-testid="input-add-color"
+                      autoFocus
+                    />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button variant="outline" onClick={() => setAddColorDialogOpen(false)} data-testid="button-cancel-add">
+                    Cancel
+                  </Button>
+                  <Button onClick={handleAddColor} data-testid="button-confirm-add">
+                    Add Color
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
             <Button 
               onClick={copyEntirePalette} 
-              variant="default"
+              variant="outline"
               data-testid="button-copy-entire-palette"
             >
               <Palette className="h-4 w-4 mr-2" />

@@ -63,6 +63,14 @@ export default function Home() {
     setColors([]);
   };
 
+  const handleAddColor = (color: ColorFormats) => {
+    const newColor: Color = {
+      ...color,
+      id: `${Date.now()}-${Math.random()}`
+    };
+    setColors(prev => [...prev, newColor]);
+  };
+
   const exportAsPDF = async () => {
     if (colors.length === 0) return;
 
@@ -270,6 +278,7 @@ export default function Home() {
         onMoveColor={handleMoveColor}
         onDeleteColor={handleDeleteColor}
         onClearPalette={handleClearPalette}
+        onAddColor={handleAddColor}
       />
       <HowItWorks />
       <CrossPromo />
