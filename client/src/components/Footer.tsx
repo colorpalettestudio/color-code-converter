@@ -1,4 +1,5 @@
-import { Palette, ExternalLink } from "lucide-react";
+import { Palette, ExternalLink, Heart, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function Footer() {
   return (
@@ -10,9 +11,27 @@ export function Footer() {
               <Palette className="h-5 w-5 text-primary" />
               <span className="font-semibold">Color Palette Studio</span>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground mb-4">
               Free tools for designers and developers to work with colors effortlessly.
             </p>
+            <p className="text-sm text-muted-foreground mb-4 flex items-center gap-1">
+              Made with <Heart className="h-3 w-3 text-red-500 fill-red-500" /> by{" "}
+              <a 
+                href="https://thecolorpalettestudio.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-foreground hover:underline font-medium"
+                data-testid="link-main-website"
+              >
+                Color Palette Studio
+              </a>
+            </p>
+            <Button variant="default" size="sm" asChild>
+              <a href="https://thecolorpalettestudio.com/" target="_blank" rel="noopener noreferrer" data-testid="button-visit-website">
+                Explore More Tools
+                <ArrowRight className="ml-2 h-3 w-3" />
+              </a>
+            </Button>
           </div>
           
           <div>
@@ -59,7 +78,7 @@ export function Footer() {
         </div>
         
         <div className="border-t pt-6 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Color Code Converter. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Color Palette Studio. All rights reserved.</p>
         </div>
       </div>
     </footer>
