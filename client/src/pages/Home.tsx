@@ -55,6 +55,10 @@ export default function Home() {
     });
   };
 
+  const handleDeleteColor = (id: string) => {
+    setColors(prev => prev.filter(c => c.id !== id));
+  };
+
   const exportAsPDF = async () => {
     if (colors.length === 0) return;
 
@@ -120,7 +124,6 @@ export default function Home() {
     // Improved sizing
     const swatchSize = 120;
     const padding = 40;
-    const gap = 20;
     const titleHeight = 60;
     const rowHeight = 140;
 
@@ -218,6 +221,7 @@ export default function Home() {
         onExportASE={exportAsASE}
         onUpdateColor={handleUpdateColor}
         onMoveColor={handleMoveColor}
+        onDeleteColor={handleDeleteColor}
       />
       <HowItWorks />
       <CrossPromo />

@@ -233,8 +233,9 @@ function renderResults() {
                 <div class="color-swatch-container">
                     <div class="color-swatch" style="background-color: ${color.hex};" onclick="editColor(${index})"></div>
                     <div class="move-buttons">
-                        <button class="move-btn" onclick="moveColor(${index}, -1)" ${index === 0 ? 'disabled' : ''}>↑</button>
-                        <button class="move-btn" onclick="moveColor(${index}, 1)" ${index === colors.length - 1 ? 'disabled' : ''}>↓</button>
+                        <button class="move-btn" onclick="moveColor(${index}, -1)" ${index === 0 ? 'disabled' : ''} title="Move up">↑</button>
+                        <button class="move-btn" onclick="moveColor(${index}, 1)" ${index === colors.length - 1 ? 'disabled' : ''} title="Move down">↓</button>
+                        <button class="move-btn delete-btn" onclick="deleteColor(${index})" title="Delete color">×</button>
                     </div>
                 </div>
                 <div class="color-formats">
@@ -275,6 +276,17 @@ function moveColor(index, direction) {
     if (newIndex < 0 || newIndex >= colors.length) return;
     [colors[index], colors[newIndex]] = [colors[newIndex], colors[index]];
     renderResults();
+}
+
+// Delete color
+function deleteColor(index) {
+    colors.splice(index, 1);
+    if (colors.length === 0) {
+        document.getElementById('results').classList.add('hidden');
+        document.getElementById('format-selector').classList.add('hidden');
+    } else {
+        renderResults();
+    }
 }
 
 // Edit color

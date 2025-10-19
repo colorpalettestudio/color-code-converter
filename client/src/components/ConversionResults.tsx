@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check, Download, ChevronUp, ChevronDown, Palette } from "lucide-react";
+import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,7 @@ type ConversionResultsProps = {
   onExportASE: () => void;
   onUpdateColor: (id: string, newColor: ColorFormats) => void;
   onMoveColor: (id: string, direction: "up" | "down") => void;
+  onDeleteColor: (id: string) => void;
 };
 
 export function ConversionResults({ 
@@ -24,7 +25,8 @@ export function ConversionResults({
   onExportPNG,
   onExportASE,
   onUpdateColor,
-  onMoveColor
+  onMoveColor,
+  onDeleteColor
 }: ConversionResultsProps) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [editingColorId, setEditingColorId] = useState<string | null>(null);
@@ -174,6 +176,16 @@ export function ConversionResults({
                         data-testid={`button-move-down-${color.id}`}
                       >
                         <ChevronDown className="h-3 w-3" />
+                      </Button>
+                      <Button
+                        size="icon"
+                        variant="destructive"
+                        className="h-6 w-6"
+                        onClick={() => onDeleteColor(color.id)}
+                        data-testid={`button-delete-${color.id}`}
+                        title="Delete color"
+                      >
+                        <X className="h-3 w-3" />
                       </Button>
                     </div>
                   </div>
