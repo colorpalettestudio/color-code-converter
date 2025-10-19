@@ -113,71 +113,105 @@ export default function Home() {
   const exportAsPNG = async () => {
     if (colors.length === 0) return;
 
-    const allFormats = [
-      { key: "hex", label: "HEX" },
-      { key: "rgb", label: "RGB" },
-      { key: "hsl", label: "HSL" },
-      { key: "cmyk", label: "CMYK" },
-    ];
-    const visibleFormats = allFormats.filter(f => selectedFormats.has(f.key));
-
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Improved sizing
-    const swatchSize = 120;
+    // High DPI scaling for crisp output
+    const scale = 3;
+    const cols = 3;
+    const cardWidth = 320;
+    const cardHeight = 380;
+    const gap = 30;
     const padding = 40;
-    const titleHeight = 60;
-    const rowHeight = 140;
+    
+    const rows = Math.ceil(colors.length / cols);
+    const canvasWidth = (cardWidth * cols) + (gap * (cols - 1)) + (padding * 2);
+    const canvasHeight = (cardHeight * rows) + (gap * (rows - 1)) + (padding * 2);
 
-    const canvasWidth = 900;
-    const canvasHeight = titleHeight + (rowHeight * colors.length) + padding * 2;
-
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    canvas.width = canvasWidth * scale;
+    canvas.height = canvasHeight * scale;
+    ctx.scale(scale, scale);
 
     // Background
-    ctx.fillStyle = theme === 'dark' ? '#1a1d28' : '#ffffff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#f5f5f5';
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    // Title
-    ctx.fillStyle = theme === 'dark' ? '#f3f4f6' : '#1a1d28';
-    ctx.font = 'bold 28px sans-serif';
-    ctx.fillText('Color Palette', padding, padding + 30);
-
-    // Draw each color
+    // Draw each color card
     colors.forEach((color, index) => {
-      const y = titleHeight + padding + (index * rowHeight);
-      
+      const col = index % cols;
+      const row = Math.floor(index / cols);
+      const x = padding + (col * (cardWidth + gap));
+      const y = padding + (row * (cardHeight + gap));
+
+      const swatchHeight = 200;
+      const textAreaHeight = cardHeight - swatchHeight;
+      const borderRadius = 12;
+
+      // Draw card with rounded corners
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(x + borderRadius, y);
+      ctx.lineTo(x + cardWidth - borderRadius, y);
+      ctx.quadraticCurveTo(x + cardWidth, y, x + cardWidth, y + borderRadius);
+      ctx.lineTo(x + cardWidth, y + cardHeight - borderRadius);
+      ctx.quadraticCurveTo(x + cardWidth, y + cardHeight, x + cardWidth - borderRadius, y + cardHeight);
+      ctx.lineTo(x + borderRadius, y + cardHeight);
+      ctx.quadraticCurveTo(x, y + cardHeight, x, y + cardHeight - borderRadius);
+      ctx.lineTo(x, y + borderRadius);
+      ctx.quadraticCurveTo(x, y, x + borderRadius, y);
+      ctx.closePath();
+      ctx.clip();
+
       // Color swatch
       ctx.fillStyle = color.hex;
-      ctx.fillRect(padding, y, swatchSize, swatchSize);
-      
-      // Swatch border
-      ctx.strokeStyle = theme === 'dark' ? '#374151' : '#e5e7eb';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(padding, y, swatchSize, swatchSize);
+      ctx.fillRect(x, y, cardWidth, swatchHeight);
 
-      // Format labels and values
-      const textX = padding + swatchSize + 30;
-      let textY = y + 20;
+      // Text area background
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(x, y + swatchHeight, cardWidth, textAreaHeight);
+
+      ctx.restore();
+
+      // Card border
+      ctx.strokeStyle = '#1a1a1a';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(x + borderRadius, y);
+      ctx.lineTo(x + cardWidth - borderRadius, y);
+      ctx.quadraticCurveTo(x + cardWidth, y, x + cardWidth, y + borderRadius);
+      ctx.lineTo(x + cardWidth, y + cardHeight - borderRadius);
+      ctx.quadraticCurveTo(x + cardWidth, y + cardHeight, x + cardWidth - borderRadius, y + cardHeight);
+      ctx.lineTo(x + borderRadius, y + cardHeight);
+      ctx.quadraticCurveTo(x, y + cardHeight, x, y + cardHeight - borderRadius);
+      ctx.lineTo(x, y + borderRadius);
+      ctx.quadraticCurveTo(x, y, x + borderRadius, y);
+      ctx.closePath();
+      ctx.stroke();
+
+      // Text content
+      ctx.fillStyle = '#1a1a1a';
+      ctx.font = '15px monospace';
+      ctx.textBaseline = 'top';
       
-      visibleFormats.forEach((format) => {
-        const key = format.key as keyof ColorFormats;
-        
-        // Format label
-        ctx.fillStyle = theme === 'dark' ? '#9ca3af' : '#6b7280';
-        ctx.font = 'bold 12px sans-serif';
-        ctx.fillText(format.label.toUpperCase(), textX, textY);
-        
-        // Format value
-        ctx.fillStyle = theme === 'dark' ? '#f3f4f6' : '#1a1d28';
-        ctx.font = '16px monospace';
-        ctx.fillText(color[key], textX + 80, textY);
-        
-        textY += 30;
-      });
+      const textX = x + 20;
+      let textY = y + swatchHeight + 20;
+      const lineHeight = 28;
+
+      // HEX
+      ctx.fillText(color.hex, textX, textY);
+      textY += lineHeight;
+
+      // RGB
+      ctx.fillText(color.rgb, textX, textY);
+      textY += lineHeight;
+
+      // CMYK
+      ctx.fillText(color.cmyk, textX, textY);
+      textY += lineHeight;
+
+      // HSL
+      ctx.fillText(color.hsl, textX, textY);
     });
 
     // Download
