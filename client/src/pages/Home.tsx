@@ -204,7 +204,15 @@ export default function Home() {
       
       {/* Ad Placeholder - Top */}
       <div className="ad-slot-placeholder" data-testid="ad-slot-top">
-        <span>Ad Space</span>
+        <div className="ad-content">
+          <div className="ad-visual">🎨</div>
+          <div className="ad-text">
+            <div className="ad-headline">Design Like a Pro with Figma</div>
+            <div className="ad-description">Join millions of designers creating beautiful interfaces. Free for individuals.</div>
+            <div className="ad-cta">Start Designing Free</div>
+          </div>
+          <div className="ad-badge">Sponsored</div>
+        </div>
       </div>
       
       {colors.length > 0 && (
@@ -233,14 +241,30 @@ export default function Home() {
       
       {/* Ad Placeholder - Middle */}
       <div className="ad-slot-placeholder" data-testid="ad-slot-middle">
-        <span>Ad Space</span>
+        <div className="ad-content">
+          <div className="ad-visual">💼</div>
+          <div className="ad-text">
+            <div className="ad-headline">Adobe Creative Cloud - 20% Off</div>
+            <div className="ad-description">Get Photoshop, Illustrator, and 20+ apps. Perfect for designers and creatives.</div>
+            <div className="ad-cta">Get Your Discount</div>
+          </div>
+          <div className="ad-badge">Sponsored</div>
+        </div>
       </div>
       
       <SEOContent />
       
       {/* Ad Placeholder - Bottom */}
       <div className="ad-slot-placeholder" data-testid="ad-slot-bottom">
-        <span>Ad Space</span>
+        <div className="ad-content">
+          <div className="ad-visual">🚀</div>
+          <div className="ad-text">
+            <div className="ad-headline">Webflow - Build Stunning Websites</div>
+            <div className="ad-description">Create professional websites without code. Drag, drop, and launch in minutes.</div>
+            <div className="ad-cta">Try Webflow Free</div>
+          </div>
+          <div className="ad-badge">Sponsored</div>
+        </div>
       </div>
       
       <Footer />
