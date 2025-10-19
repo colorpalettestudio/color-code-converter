@@ -496,4 +496,12 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+
+  /* Rainbow gradient text effect */
+  .gradient-text {
+    background: linear-gradient(90deg, #ff6f61, #ffd166, #8ed6a9, #6fa8ff, #b76fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }

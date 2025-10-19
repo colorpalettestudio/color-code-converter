@@ -93,7 +93,7 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
         </Badge>
         
         <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight" data-testid="text-hero-title">
-          Convert All Your Color Codes Instantly
+          Convert All Your <span className="gradient-text">Color Codes</span> Instantly
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
