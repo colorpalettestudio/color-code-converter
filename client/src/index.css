@@ -499,7 +499,7 @@
 
   /* Rainbow gradient text effect */
   .gradient-text {
-    background: linear-gradient(90deg, #ff6f61, #ffd166, #8ed6a9, #6fa8ff, #b76fff);
+    background: linear-gradient(90deg, #ff4433, #ffcc00, #00dd77, #3388ff, #aa44ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
