@@ -61,6 +61,7 @@ export function ConversionResults({
   onAddColor
 }: ConversionResultsProps) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [copiedFormat, setCopiedFormat] = useState<string | null>(null);
   const [editingColorId, setEditingColorId] = useState<string | null>(null);
   const [addColorDialogOpen, setAddColorDialogOpen] = useState(false);
   const [newColorInput, setNewColorInput] = useState("");
@@ -83,6 +84,20 @@ export function ConversionResults({
   ];
 
   const visibleFormats = allFormats.filter(f => selectedFormats.has(f.key));
+
+  const copyIndividualFormat = async (colorId: string, formatKey: string, value: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedFormat(`${colorId}-${formatKey}`);
+      setTimeout(() => setCopiedFormat(null), 2000);
+      toast({
+        title: "Copied!",
+        description: value,
+      });
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
 
   const copyAllFormats = async (color: ColorFormats & { id: string }) => {
     const formatsToCopy = visibleFormats.map(f => {
@@ -394,12 +409,28 @@ export function ConversionResults({
                   <div className={`grid gap-x-6 gap-y-2 font-mono text-sm`} style={{ gridTemplateColumns: `repeat(${Math.min(visibleFormats.length, 2)}, 1fr)` }}>
                     {visibleFormats.map((format) => {
                       const key = format.key as keyof ColorFormats;
+                      const formatId = `${color.id}-${format.key}`;
+                      const isCopied = copiedFormat === formatId;
                       return (
                         <div key={format.key}>
                           <span className="text-xs text-muted-foreground uppercase font-medium block mb-1">
                             {format.label}
                           </span>
-                          <span data-testid={`${format.key}-${color.id}`}>{color[key]}</span>
+                          <span 
+                            onClick={() => copyIndividualFormat(color.id, format.key, color[key])}
+                            className="cursor-pointer hover-elevate active-elevate-2 px-2 py-1 -mx-2 -my-1 rounded inline-block transition-colors"
+                            data-testid={`${format.key}-${color.id}`}
+                            title="Click to copy"
+                          >
+                            {isCopied ? (
+                              <span className="inline-flex items-center gap-1">
+                                <Check className="h-3 w-3 text-chart-2" />
+                                {color[key]}
+                              </span>
+                            ) : (
+                              color[key]
+                            )}
+                          </span>
                         </div>
                       );
                     })}
