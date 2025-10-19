@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X, Trash2, Camera, Plus, MoreHorizontal, FileText, Image, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -64,7 +64,14 @@ export function ConversionResults({
   const [editingColorId, setEditingColorId] = useState<string | null>(null);
   const [addColorDialogOpen, setAddColorDialogOpen] = useState(false);
   const [newColorInput, setNewColorInput] = useState("");
+  const colorInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (editingColorId && colorInputRef.current) {
+      colorInputRef.current.click();
+    }
+  }, [editingColorId]);
 
   if (colors.length === 0) return null;
 
@@ -338,17 +345,15 @@ export function ConversionResults({
                       data-testid={`swatch-${color.id}`}
                       title="Click to edit color"
                     >
-                      {editingColorId === color.id && (
-                        <Input
-                          type="color"
-                          defaultValue={color.hex}
-                          onChange={(e) => handleColorEdit(color.id, e.target.value)}
-                          onBlur={() => setEditingColorId(null)}
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          autoFocus
-                          data-testid={`input-color-picker-${color.id}`}
-                        />
-                      )}
+                      <Input
+                        ref={editingColorId === color.id ? colorInputRef : null}
+                        type="color"
+                        value={color.hex}
+                        onChange={(e) => handleColorEdit(color.id, e.target.value)}
+                        onBlur={() => setEditingColorId(null)}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        data-testid={`input-color-picker-${color.id}`}
+                      />
                     </div>
                     <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       <Button
