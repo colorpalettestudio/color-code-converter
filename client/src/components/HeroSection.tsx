@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { parseColorInput, type ColorFormats } from "@/lib/colorUtils";
+import { useToast } from "@/hooks/use-toast";
 import { Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -11,11 +12,15 @@ type HeroSectionProps = {
 
 export function HeroSection({ onConvert }: HeroSectionProps) {
   const [inputValue, setInputValue] = useState("");
+  const { toast } = useToast();
 
-  // Instant conversion - convert as user types
-  useEffect(() => {
+  const handleConvert = () => {
     if (!inputValue.trim()) {
-      onConvert([]);
+      toast({
+        title: "Enter color codes",
+        description: "Please enter at least one color code",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -29,8 +34,22 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
       }
     });
 
+    if (converted.length === 0) {
+      toast({
+        title: "No valid colors found",
+        description: "Please enter valid color codes (HEX, RGB, HSL, or CMYK)",
+        variant: "destructive",
+      });
+      return;
+    }
+
     onConvert(converted);
-  }, [inputValue, onConvert]);
+    
+    toast({
+      title: "Colors converted!",
+      description: `${converted.length} color${converted.length > 1 ? "s" : ""} successfully converted`,
+    });
+  };
 
   const loadSampleColors = () => {
     setInputValue("#FF6F61\n#FFD166\n#06D6A0\n#118AB2\n#073B4C");
@@ -60,6 +79,9 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
             data-testid="input-color-bulk"
           />
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button size="lg" onClick={handleConvert} data-testid="button-convert">
+              Convert
+            </Button>
             <Button size="lg" variant="outline" onClick={loadSampleColors} data-testid="button-sample">
               <Sparkles className="h-4 w-4 mr-2" />
               Try sample colors

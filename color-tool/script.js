@@ -173,15 +173,11 @@ function exportAsAdobeSwatch(colors) {
 let colors = [];
 let selectedFormats = new Set(['hex', 'rgb', 'hsl', 'cmyk']);
 
-// Instant conversion - convert as user types
-const colorInput = document.getElementById('color-input');
-colorInput.addEventListener('input', () => {
-    const input = colorInput.value;
-    
+// Convert button
+document.getElementById('convert-btn').addEventListener('click', () => {
+    const input = document.getElementById('color-input').value;
     if (!input.trim()) {
-        colors = [];
-        document.getElementById('results').classList.add('hidden');
-        document.getElementById('format-selector').classList.add('hidden');
+        alert('Please enter at least one color code');
         return;
     }
 
@@ -195,20 +191,19 @@ colorInput.addEventListener('input', () => {
         }
     });
 
-    if (colors.length > 0) {
-        renderResults();
-        document.getElementById('results').classList.remove('hidden');
-        document.getElementById('format-selector').classList.remove('hidden');
-    } else {
-        document.getElementById('results').classList.add('hidden');
-        document.getElementById('format-selector').classList.add('hidden');
+    if (colors.length === 0) {
+        alert('No valid colors found. Please enter valid color codes.');
+        return;
     }
+
+    renderResults();
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('format-selector').classList.remove('hidden');
 });
 
 // Sample colors button
 document.getElementById('sample-btn').addEventListener('click', () => {
     document.getElementById('color-input').value = '#FF6F61\n#FFD166\n#06D6A0\n#118AB2\n#073B4C';
-    colorInput.dispatchEvent(new Event('input'));
 });
 
 // Format checkboxes
@@ -335,7 +330,7 @@ document.getElementById('export-pdf-btn').addEventListener('click', async () => 
     pdf.save('color-palette.pdf');
 });
 
-// Export PNG
+// Export PNG - Improved layout
 document.getElementById('export-png-btn').addEventListener('click', async () => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -350,50 +345,60 @@ document.getElementById('export-png-btn').addEventListener('click', async () => 
     ];
     const visibleFormats = allFormats.filter(f => selectedFormats.has(f.key));
 
-    const cardWidth = 800;
-    const cardHeight = 100;
-    const padding = 20;
-    const gap = 20;
+    // Improved sizing
+    const swatchSize = 120;
+    const padding = 40;
+    const titleHeight = 60;
+    const rowHeight = 140;
 
-    canvas.width = cardWidth + (padding * 2);
-    canvas.height = (cardHeight + gap) * colors.length + padding * 2 + 40;
+    const canvasWidth = 900;
+    const canvasHeight = titleHeight + (rowHeight * colors.length) + padding * 2;
 
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    // Background
     ctx.fillStyle = isDark ? '#1a1d28' : '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Title
     ctx.fillStyle = isDark ? '#f3f4f6' : '#1a1d28';
-    ctx.font = 'bold 24px sans-serif';
-    ctx.fillText('Color Palette', padding, padding + 20);
+    ctx.font = 'bold 28px sans-serif';
+    ctx.fillText('Color Palette', padding, padding + 30);
 
+    // Draw each color
     colors.forEach((color, index) => {
-        const y = padding + 60 + index * (cardHeight + gap);
+        const y = titleHeight + padding + (index * rowHeight);
         
-        ctx.fillStyle = isDark ? '#252933' : '#f5f5f5';
-        ctx.fillRect(padding, y, cardWidth, cardHeight);
-
+        // Color swatch
         ctx.fillStyle = color.hex;
-        ctx.fillRect(padding + 10, y + 10, 100, 80);
-
-        ctx.strokeStyle = isDark ? '#374151' : '#e5e7eb';
-        ctx.strokeRect(padding + 10, y + 10, 100, 80);
-
-        const startX = padding + 130;
-        const formatSpacing = 180;
+        ctx.fillRect(padding, y, swatchSize, swatchSize);
         
-        visibleFormats.forEach((format, fIndex) => {
-            const x = startX + Math.floor(fIndex / 2) * formatSpacing;
-            const yOffset = y + 30 + (fIndex % 2) * 40;
-            
+        // Swatch border
+        ctx.strokeStyle = isDark ? '#374151' : '#e5e7eb';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(padding, y, swatchSize, swatchSize);
+
+        // Format labels and values
+        const textX = padding + swatchSize + 30;
+        let textY = y + 20;
+        
+        visibleFormats.forEach((format) => {
+            // Format label
             ctx.fillStyle = isDark ? '#9ca3af' : '#6b7280';
-            ctx.font = 'bold 10px sans-serif';
-            ctx.fillText(format.label, x, yOffset);
+            ctx.font = 'bold 12px sans-serif';
+            ctx.fillText(format.label.toUpperCase(), textX, textY);
             
+            // Format value
             ctx.fillStyle = isDark ? '#f3f4f6' : '#1a1d28';
-            ctx.font = '13px monospace';
-            ctx.fillText(color[format.key], x, yOffset + 18);
+            ctx.font = '16px monospace';
+            ctx.fillText(color[format.key], textX + 80, textY);
+            
+            textY += 30;
         });
     });
 
+    // Download
     canvas.toBlob((blob) => {
         if (blob) {
             const url = URL.createObjectURL(blob);

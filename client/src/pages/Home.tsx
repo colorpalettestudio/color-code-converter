@@ -22,11 +22,6 @@ export default function Home() {
 
   const handleConvert = (convertedColors: Color[]) => {
     setColors(convertedColors);
-    if (convertedColors.length > 0) {
-      setTimeout(() => {
-        document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
   };
 
   const handleToggleFormat = (format: string) => {
@@ -122,51 +117,63 @@ export default function Home() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const cardWidth = 800;
-    const cardHeight = 100;
-    const padding = 20;
+    // Improved sizing
+    const swatchSize = 120;
+    const padding = 40;
     const gap = 20;
+    const titleHeight = 60;
+    const rowHeight = 140;
 
-    canvas.width = cardWidth + (padding * 2);
-    canvas.height = (cardHeight + gap) * colors.length + padding * 2;
+    const canvasWidth = 900;
+    const canvasHeight = titleHeight + (rowHeight * colors.length) + padding * 2;
 
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    // Background
     ctx.fillStyle = theme === 'dark' ? '#1a1d28' : '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // Title
     ctx.fillStyle = theme === 'dark' ? '#f3f4f6' : '#1a1d28';
-    ctx.font = 'bold 24px Inter, sans-serif';
-    ctx.fillText('Color Palette', padding, padding + 20);
+    ctx.font = 'bold 28px sans-serif';
+    ctx.fillText('Color Palette', padding, padding + 30);
 
+    // Draw each color
     colors.forEach((color, index) => {
-      const y = padding + 60 + index * (cardHeight + gap);
+      const y = titleHeight + padding + (index * rowHeight);
       
-      ctx.fillStyle = theme === 'dark' ? '#252933' : '#f5f5f5';
-      ctx.fillRect(padding, y, cardWidth, cardHeight);
-
+      // Color swatch
       ctx.fillStyle = color.hex;
-      ctx.fillRect(padding + 10, y + 10, 100, 80);
-
-      ctx.strokeStyle = theme === 'dark' ? '#374151' : '#e5e7eb';
-      ctx.strokeRect(padding + 10, y + 10, 100, 80);
-
-      const startX = padding + 130;
-      const formatSpacing = 180;
+      ctx.fillRect(padding, y, swatchSize, swatchSize);
       
-      visibleFormats.forEach((format, fIndex) => {
+      // Swatch border
+      ctx.strokeStyle = theme === 'dark' ? '#374151' : '#e5e7eb';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(padding, y, swatchSize, swatchSize);
+
+      // Format labels and values
+      const textX = padding + swatchSize + 30;
+      let textY = y + 20;
+      
+      visibleFormats.forEach((format) => {
         const key = format.key as keyof ColorFormats;
-        const x = startX + Math.floor(fIndex / 2) * formatSpacing;
-        const yOffset = y + 30 + (fIndex % 2) * 40;
         
+        // Format label
         ctx.fillStyle = theme === 'dark' ? '#9ca3af' : '#6b7280';
-        ctx.font = 'bold 10px sans-serif';
-        ctx.fillText(format.label, x, yOffset);
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText(format.label.toUpperCase(), textX, textY);
         
+        // Format value
         ctx.fillStyle = theme === 'dark' ? '#f3f4f6' : '#1a1d28';
-        ctx.font = '13px monospace';
-        ctx.fillText(color[key], x, yOffset + 18);
+        ctx.font = '16px monospace';
+        ctx.fillText(color[key], textX + 80, textY);
+        
+        textY += 30;
       });
     });
 
+    // Download
     canvas.toBlob((blob) => {
       if (blob) {
         const url = URL.createObjectURL(blob);
