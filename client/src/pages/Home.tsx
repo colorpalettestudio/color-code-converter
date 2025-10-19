@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import type { ColorFormats } from "@/lib/colorUtils";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { useTheme } from "@/components/ThemeProvider";
 
 type Color = ColorFormats & { id: string };
 
@@ -17,6 +18,7 @@ export default function Home() {
   const [selectedFormats, setSelectedFormats] = useState<Set<string>>(
     new Set(["hex", "rgb", "hsl", "cmyk"])
   );
+  const { theme } = useTheme();
 
   const handleConvert = (convertedColors: Color[]) => {
     setColors(convertedColors);
@@ -109,15 +111,22 @@ export default function Home() {
     const exportElement = document.getElementById("color-palette-export");
     if (!exportElement) return;
 
-    const canvas = await html2canvas(exportElement, {
-      backgroundColor: "#ffffff",
-      scale: 2,
-    });
+    try {
+      const canvas = await html2canvas(exportElement, {
+        backgroundColor: theme === "dark" ? "#1a1d28" : "#ffffff",
+        scale: 2,
+        logging: false,
+        useCORS: true,
+        allowTaint: true,
+      });
 
-    const link = document.createElement("a");
-    link.download = "color-palette.png";
-    link.href = canvas.toDataURL();
-    link.click();
+      const link = document.createElement("a");
+      link.download = "color-palette.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    } catch (error) {
+      console.error("Failed to export PNG:", error);
+    }
   };
 
   return (
