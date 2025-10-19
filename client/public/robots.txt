@@ -1,0 +1,6 @@
+# Robots.txt for The Color Code Converter
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://thecolorcodeconverter.com/sitemap.xml

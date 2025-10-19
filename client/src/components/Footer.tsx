@@ -1,5 +1,6 @@
 import { Palette, ExternalLink, Heart, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export function Footer() {
   return (
@@ -68,10 +69,19 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://thecolorpalettestudio.com/pages/contact" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-contact">
+                <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-contact">
                   Contact
-                  <ExternalLink className="h-3 w-3" />
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-privacy">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-terms">
+                  Terms of Service
+                </Link>
               </li>
             </ul>
           </div>
