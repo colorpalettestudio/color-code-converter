@@ -1,0 +1,132 @@
+🎨 COLOR CODE CONVERTER MICRO-SITE TEMPLATE
+
+Goal: Rank for “color code converter,” “HEX to RGB,” “convert color codes online,” etc.
+Secondary Goal: Send qualified traffic to Color Palette Fixer and capture email opt-ins.
+
+🧱 1. SITE STRUCTURE
+
+Page sections:
+
+Hero / Tool Section (Above-the-Fold)
+
+Conversion Results / Export Options
+
+How It Works (mini explainer)
+
+CTA Section → Promote Color Palette Fixer
+
+SEO-Rich Content Block (FAQ + Tutorial)
+
+Footer (with light CPS branding + cross-links)
+
+🖥️ 2. WIREFRAME / LAYOUT
+🧩 HERO SECTION
+
+Headline:
+
+Convert All Your Color Codes Instantly 🎨
+
+Subheadline:
+
+Drop in your HEX, RGB, HSL, or CMYK values — get every format at once, ready to copy or export as a palette.
+
+UI Elements:
+
+Input box (supports comma or line-separated color codes)
+
+“Convert” button
+
+Example link: “Try sample colors → #FF6F61, #FFD166, #06D6A0”
+
+Ad placement:
+
+Top banner (below the hero text — Google Auto Ad recommended)
+
+Micro-trust badge:
+
+⚡ Free & Instant • 💾 Export to PNG / PDF • 🔒 No sign-up required
+
+🎨 CONVERSION RESULTS
+
+Display converted formats in grid view
+
+HEX | RGB | HSL | CMYK | Preview swatch
+
+“Copy All” + “Export Palette” buttons
+
+Optional toggle: Light / Dark mode
+
+Inline CTA:
+
+👀 Want to test your palette for harmony & accessibility?
+Try Color Palette Fixer →
+
+🧠 HOW IT WORKS
+
+Headline:
+
+How It Works (in 3 Simple Steps)
+
+Steps:
+1️⃣ Paste or upload your color codes
+2️⃣ Click “Convert” — get instant formats
+3️⃣ Export your full palette for design use
+
+Ad placement:
+
+Mid-page responsive ad (Ezoic / Google recommended)
+
+💡 CROSS-PROMO CTA
+
+Headline:
+
+Fix Your Color Palette in 60 Seconds
+
+Subhead:
+
+Got a palette that feels “off”? The Color Palette Fixer diagnoses your palette and gives one-click fixes — instantly.
+
+Button:
+
+👉 Try Color Palette Fixer (Free Demo)
+
+(This doubles as both an affiliate-style banner and retargeting anchor.)
+
+📚 SEO CONTENT BLOCK
+
+Add ~400–600 words below the main tool for SEO strength.
+
+Example structure:
+
+H2: What Is a Color Code Converter?
+
+A color code converter lets you translate colors between different systems (HEX, RGB, HSL, CMYK, and more). Designers, web developers, and brand builders use converters to make sure their colors look consistent across digital and print.
+
+H3: Why Convert Color Codes?
+
+Match your brand colors across apps (Photoshop, Canva, Figma)
+
+Prepare colors for web, print, and product packaging
+
+Quickly check tone variations or generate theme palettes
+
+H3: Frequently Asked Questions
+
+Can I convert multiple colors at once?
+
+Does this tool work offline?
+
+Is this converter free? (Yes — always.)
+
+Add structured data (FAQ schema) for SEO boost.
+
+⚙️ FOOTER
+
+Light, minimal footer with:
+
+Built by The Color Palette Studio
+
+Try more free tools: Color Palette Tester
+ • Color Harmony Generator
+
+Include one more responsive ad unit here.

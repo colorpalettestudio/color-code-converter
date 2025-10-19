@@ -1,75 +1,90 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
-import { ColorInput } from "@/components/ColorInput";
-import { ColorCard } from "@/components/ColorCard";
-import { ExportButtons } from "@/components/ExportButtons";
-import { EmptyState } from "@/components/EmptyState";
+import { HeroSection } from "@/components/HeroSection";
+import { ConversionResults } from "@/components/ConversionResults";
+import { HowItWorks } from "@/components/HowItWorks";
+import { SEOContent } from "@/components/SEOContent";
+import { Footer } from "@/components/Footer";
 import type { ColorFormats } from "@/lib/colorUtils";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 type Color = ColorFormats & { id: string };
 
 export default function Home() {
   const [colors, setColors] = useState<Color[]>([]);
 
-  const handleAddColor = (color: ColorFormats) => {
-    const newColor: Color = {
-      ...color,
-      id: Date.now().toString(),
-    };
-    setColors((prev) => [...prev, newColor]);
+  const handleConvert = (convertedColors: Color[]) => {
+    setColors(convertedColors);
+    setTimeout(() => {
+      document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
-  const handleDeleteColor = (id: string) => {
-    setColors((prev) => prev.filter((c) => c.id !== id));
+  const exportAsPDF = async () => {
+    if (colors.length === 0) return;
+
+    const pdf = new jsPDF();
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    let yPosition = 20;
+
+    pdf.setFontSize(20);
+    pdf.setFont("helvetica", "bold");
+    pdf.text("Color Palette", pageWidth / 2, yPosition, { align: "center" });
+
+    yPosition += 15;
+
+    colors.forEach((color) => {
+      if (yPosition > 250) {
+        pdf.addPage();
+        yPosition = 20;
+      }
+
+      pdf.setFillColor(color.hex);
+      pdf.rect(20, yPosition, 40, 30, "F");
+
+      pdf.setFontSize(10);
+      pdf.setFont("helvetica", "normal");
+      pdf.text(`HEX: ${color.hex}`, 70, yPosition + 8);
+      pdf.text(`RGB: ${color.rgb}`, 70, yPosition + 16);
+      pdf.text(`HSL: ${color.hsl}`, 70, yPosition + 24);
+      pdf.text(`CMYK: ${color.cmyk}`, 70, yPosition + 32);
+
+      yPosition += 45;
+    });
+
+    pdf.save("color-palette.pdf");
+  };
+
+  const exportAsPNG = async () => {
+    if (colors.length === 0) return;
+
+    const exportElement = document.getElementById("color-palette-export");
+    if (!exportElement) return;
+
+    const canvas = await html2canvas(exportElement, {
+      backgroundColor: "#ffffff",
+      scale: 2,
+    });
+
+    const link = document.createElement("a");
+    link.download = "color-palette.png";
+    link.href = canvas.toDataURL();
+    link.click();
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="container mx-auto px-4 md:px-6 py-8 max-w-6xl">
-        <div className="space-y-8">
-          <div>
-            <h2 className="text-2xl font-semibold mb-2">Add Your Brand Colors</h2>
-            <p className="text-muted-foreground mb-6">
-              Enter colors in any format and instantly convert and copy
-            </p>
-            <ColorInput onColorAdd={handleAddColor} />
-          </div>
-
-          {colors.length > 0 && (
-            <>
-              <div>
-                <h2 className="text-2xl font-semibold mb-4">
-                  Your Colors ({colors.length})
-                </h2>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Select the formats you need and click "Copy Selected" to copy all at once
-                </p>
-                <div
-                  id="color-palette-export"
-                  className="space-y-4"
-                  data-testid="container-color-grid"
-                >
-                  {colors.map((color) => (
-                    <ColorCard
-                      key={color.id}
-                      color={color}
-                      onDelete={handleDeleteColor}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h2 className="text-2xl font-semibold mb-6">Export Your Palette</h2>
-                <ExportButtons colors={colors} />
-              </div>
-            </>
-          )}
-
-          {colors.length === 0 && <EmptyState />}
-        </div>
-      </main>
+      <HeroSection onConvert={handleConvert} />
+      <ConversionResults 
+        colors={colors} 
+        onExportPDF={exportAsPDF}
+        onExportPNG={exportAsPNG}
+      />
+      <HowItWorks />
+      <SEOContent />
+      <Footer />
     </div>
   );
 }
