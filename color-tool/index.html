@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Code Converter - Convert HEX to RGB, HSL, CMYK | Free Online Tool</title>
+    <meta name="description" content="Free color code converter. Instantly convert HEX to RGB, HSL, CMYK and vice versa. Convert multiple colors at once, copy all formats, and export palettes as PDF or PNG.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🎨</div>
+                    <div class="logo-text">
+                        <h1>Color Code Converter</h1>
+                        <p>Transform brand colors instantly</p>
+                    </div>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2 class="hero-title">Convert All Your Color Codes Instantly 🎨</h2>
+                <p class="hero-subtitle">Drop in your HEX, RGB, HSL, or CMYK values — get every format at once, ready to copy or export as a palette.</p>
+                
+                <div class="input-section">
+                    <textarea id="color-input" placeholder="Enter colors (one per line or comma-separated)&#10;Examples: #FF6F61, rgb(255, 111, 97), hsl(5, 100%, 69%)"></textarea>
+                    <div class="button-group">
+                        <button id="convert-btn" class="btn btn-primary">Convert</button>
+                        <button id="sample-btn" class="btn btn-secondary">Try sample colors</button>
+                    </div>
+                </div>
+
+                <div class="trust-badges">
+                    <span>⚡ Free & Instant</span>
+                    <span>💾 Export to PNG / PDF</span>
+                    <span>🔒 No sign-up required</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="format-selector" class="format-selector hidden">
+            <div class="container">
+                <div class="format-options">
+                    <span>Show formats:</span>
+                    <label><input type="checkbox" id="format-hex" checked> HEX</label>
+                    <label><input type="checkbox" id="format-rgb" checked> RGB</label>
+                    <label><input type="checkbox" id="format-hsl" checked> HSL</label>
+                    <label><input type="checkbox" id="format-cmyk" checked> CMYK</label>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="results hidden">
+            <div class="container">
+                <div class="results-header">
+                    <h2>Conversion Results (<span id="color-count">0</span>)</h2>
+                    <div class="export-buttons">
+                        <button id="copy-palette-btn" class="btn btn-primary">🎨 Copy Entire Palette</button>
+                        <button id="export-pdf-btn" class="btn btn-secondary">📄 Export PDF</button>
+                        <button id="export-png-btn" class="btn btn-secondary">🖼️ Export PNG</button>
+                    </div>
+                </div>
+                <div id="colors-grid" class="colors-grid"></div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="container">
+                <h2>How It Works (in 3 Simple Steps)</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">📝</div>
+                        <div class="step-number">1</div>
+                        <h3>Paste or upload your color codes</h3>
+                        <p>Enter any color format: HEX, RGB, HSL, or CMYK</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">⚡</div>
+                        <div class="step-number">2</div>
+                        <h3>Click "Convert" — get instant formats</h3>
+                        <p>See all conversions displayed in a clean grid</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">💾</div>
+                        <div class="step-number">3</div>
+                        <h3>Export your full palette for design use</h3>
+                        <p>Download as PDF or PNG for your projects</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="seo-content">
+            <div class="container">
+                <article>
+                    <h2>What Is a Color Code Converter?</h2>
+                    <p>A color code converter lets you translate colors between different systems (HEX, RGB, HSL, CMYK, and more). Designers, web developers, and brand builders use converters to make sure their colors look consistent across digital and print media.</p>
+
+                    <h3>Why Convert Color Codes?</h3>
+                    <ul>
+                        <li><strong>Match your brand colors across apps</strong> — Photoshop, Canva, Figma, and other design tools often use different color formats</li>
+                        <li><strong>Prepare colors for web, print, and product packaging</strong> — Different media require different color spaces</li>
+                        <li><strong>Quickly check tone variations or generate theme palettes</strong> — Convert and compare colors to build harmonious designs</li>
+                        <li><strong>Save time and avoid errors</strong> — Instant conversion means no manual calculations or guesswork</li>
+                    </ul>
+
+                    <h3>Frequently Asked Questions</h3>
+                    <div class="faq">
+                        <details>
+                            <summary>Can I convert multiple colors at once?</summary>
+                            <p>Yes! Simply enter multiple color codes separated by commas or new lines. Our tool will convert all of them instantly and display them in an organized grid format.</p>
+                        </details>
+                        <details>
+                            <summary>Is this converter free?</summary>
+                            <p>Yes — always! This color code converter is completely free to use with no sign-up required. You can convert unlimited colors and export as many palettes as you need.</p>
+                        </details>
+                        <details>
+                            <summary>What formats can I export to?</summary>
+                            <p>You can export your converted color palette as a PDF or PNG image. The exported file includes all your colors with their converted values in all selected formats.</p>
+                        </details>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>🎨 Built by The Color Palette Studio</p>
+            <p>© 2025 Color Code Converter. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
