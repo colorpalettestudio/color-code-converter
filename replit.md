@@ -51,12 +51,19 @@ Preferred communication style: Simple, everyday language.
 - `color-convert` library for accurate color space transformations
 - Support for parsing multiple input formats: HEX, RGB, HSL, CMYK
 - Studio code parser for importing color palettes from external tools
+- Click-to-copy functionality on individual color codes with visual feedback
 
 **Export Functionality**:
 - PDF generation using jsPDF
 - PNG export using html2canvas
 - Adobe Swatch Exchange (.ase) format with custom binary format writer
 - All exports happen client-side for privacy and speed
+
+**UI/UX Features**:
+- Inline format selector with checkboxes (HEX, RGB, HSL, CMYK) integrated into results header
+- Click-to-copy individual color codes with hover elevation and checkmark feedback
+- Single-click color picker activation with full drag support
+- Consolidated action buttons (Add Color, Copy Palette, Export dropdown, More actions)
 
 **SEO Optimization**:
 - Comprehensive meta tags (Open Graph, Twitter Cards)

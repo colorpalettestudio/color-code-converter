@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { HeroSection } from "@/components/HeroSection";
-import { FormatSelector } from "@/components/FormatSelector";
 import { ConversionResults } from "@/components/ConversionResults";
 import { HowItWorks } from "@/components/HowItWorks";
 import { CrossPromo } from "@/components/CrossPromo";
@@ -258,19 +257,10 @@ export default function Home() {
         </div>
       </div>
       
-      {colors.length > 0 && (
-        <div className="py-6 px-4">
-          <div className="container mx-auto max-w-6xl">
-            <FormatSelector 
-              selectedFormats={selectedFormats}
-              onToggleFormat={handleToggleFormat}
-            />
-          </div>
-        </div>
-      )}
       <ConversionResults 
         colors={colors} 
         selectedFormats={selectedFormats}
+        onToggleFormat={handleToggleFormat}
         onExportPDF={exportAsPDF}
         onExportPNG={exportAsPNG}
         onExportASE={exportAsASE}

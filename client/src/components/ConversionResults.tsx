@@ -3,6 +3,8 @@ import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X, Trash2, Came
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -30,7 +32,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Label } from "@/components/ui/label";
 import type { ColorFormats } from "@/lib/colorUtils";
 import { useToast } from "@/hooks/use-toast";
 import { parseColorInput } from "@/lib/colorUtils";
@@ -38,6 +39,7 @@ import { parseColorInput } from "@/lib/colorUtils";
 type ConversionResultsProps = {
   colors: Array<ColorFormats & { id: string }>;
   selectedFormats: Set<string>;
+  onToggleFormat: (format: string) => void;
   onExportPDF: () => void;
   onExportPNG: () => void;
   onExportASE: () => void;
@@ -51,6 +53,7 @@ type ConversionResultsProps = {
 export function ConversionResults({ 
   colors, 
   selectedFormats,
+  onToggleFormat,
   onExportPDF, 
   onExportPNG,
   onExportASE,
@@ -218,8 +221,23 @@ export function ConversionResults({
           Your {colors.length} color{colors.length !== 1 ? 's' : ''} converted across all formats
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-between mb-6 gap-4">
-          <div className="text-lg font-semibold">
-            Color Palette ({colors.length})
+          <div className="flex flex-wrap items-center gap-4">
+            {allFormats.map((format) => (
+              <div key={format.key} className="flex items-center gap-2">
+                <Checkbox
+                  id={`format-${format.key}`}
+                  checked={selectedFormats.has(format.key)}
+                  onCheckedChange={() => onToggleFormat(format.key)}
+                  data-testid={`checkbox-format-${format.key}`}
+                />
+                <Label
+                  htmlFor={`format-${format.key}`}
+                  className="text-sm font-medium cursor-pointer"
+                >
+                  {format.label}
+                </Label>
+              </div>
+            ))}
           </div>
           <div className="flex flex-wrap gap-2 justify-center">
             {/* Add Color - Primary Action */}
