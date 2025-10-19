@@ -204,14 +204,15 @@ export default function Home() {
       
       {/* Ad Placeholder - Top */}
       <div className="ad-slot-placeholder" data-testid="ad-slot-top">
+        <div className="ad-label">Advertisement</div>
+        <div className="ad-choices"></div>
         <div className="ad-content">
-          <div className="ad-visual">🎨</div>
+          <div className="ad-image">🎨</div>
           <div className="ad-text">
-            <div className="ad-headline">Design Like a Pro with Figma</div>
-            <div className="ad-description">Join millions of designers creating beautiful interfaces. Free for individuals.</div>
-            <div className="ad-cta">Start Designing Free</div>
+            <div className="ad-headline">Professional Color Tools for Designers - Try Free</div>
+            <div className="ad-url">www.adobe.com/color</div>
+            <div className="ad-description">Create perfect color palettes with Adobe Color. Access millions of color themes and export directly to Creative Cloud apps.</div>
           </div>
-          <div className="ad-badge">Sponsored</div>
         </div>
       </div>
       
@@ -240,15 +241,15 @@ export default function Home() {
       <CrossPromo />
       
       {/* Ad Placeholder - Middle */}
-      <div className="ad-slot-placeholder" data-testid="ad-slot-middle">
+      <div className="ad-slot-placeholder ad-text-only" data-testid="ad-slot-middle">
+        <div className="ad-label">Advertisement</div>
+        <div className="ad-choices"></div>
         <div className="ad-content">
-          <div className="ad-visual">💼</div>
           <div className="ad-text">
-            <div className="ad-headline">Adobe Creative Cloud - 20% Off</div>
-            <div className="ad-description">Get Photoshop, Illustrator, and 20+ apps. Perfect for designers and creatives.</div>
-            <div className="ad-cta">Get Your Discount</div>
+            <div className="ad-headline">Canva Pro - Design Anything. Publish Anywhere.</div>
+            <div className="ad-url">www.canva.com</div>
+            <div className="ad-description">Join 100M+ users creating stunning designs with Canva Pro. Access 100M+ premium photos, videos, and graphics. Collaborate in real-time. Free 30-day trial.</div>
           </div>
-          <div className="ad-badge">Sponsored</div>
         </div>
       </div>
       
@@ -256,14 +257,15 @@ export default function Home() {
       
       {/* Ad Placeholder - Bottom */}
       <div className="ad-slot-placeholder" data-testid="ad-slot-bottom">
+        <div className="ad-label">Advertisement</div>
+        <div className="ad-choices"></div>
         <div className="ad-content">
-          <div className="ad-visual">🚀</div>
+          <div className="ad-image">📊</div>
           <div className="ad-text">
-            <div className="ad-headline">Webflow - Build Stunning Websites</div>
-            <div className="ad-description">Create professional websites without code. Drag, drop, and launch in minutes.</div>
-            <div className="ad-cta">Try Webflow Free</div>
+            <div className="ad-headline">Figma - The Collaborative Design Platform</div>
+            <div className="ad-url">www.figma.com</div>
+            <div className="ad-description">Design, prototype, and collaborate all in one place. Free for individuals. Used by teams at Microsoft, Uber, Airbnb and more.</div>
           </div>
-          <div className="ad-badge">Sponsored</div>
         </div>
       </div>
       
