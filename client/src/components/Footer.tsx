@@ -19,7 +19,7 @@ export function Footer() {
             <h3 className="font-semibold mb-4">More Free Tools</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-palette-fixer">
+                <a href="https://thecolorpalettestudio.com/products/color-palette-fixer" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-palette-fixer">
                   Color Palette Fixer
                   <ExternalLink className="h-3 w-3" />
                 </a>
