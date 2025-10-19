@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { FormatSelector } from "@/components/FormatSelector";
 import { ConversionResults } from "@/components/ConversionResults";
@@ -131,7 +130,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <HeroSection onConvert={handleConvert} />
       {colors.length > 0 && (
         <div className="py-6 px-4">

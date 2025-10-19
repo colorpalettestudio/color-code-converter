@@ -41,64 +41,6 @@ body {
     padding: 0 1rem;
 }
 
-/* Header */
-header {
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.logo-icon {
-    background: var(--primary);
-    color: white;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    font-size: 1.5rem;
-}
-
-.logo-text h1 {
-    font-size: 1.125rem;
-    font-weight: 600;
-}
-
-.logo-text p {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-}
-
-.theme-toggle {
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 6px;
-    transition: background 0.2s;
-}
-
-.theme-toggle:hover {
-    background: var(--bg-muted);
-}
-
 /* Hero Section */
 .hero {
     padding: 4rem 0;

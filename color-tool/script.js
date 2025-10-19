@@ -94,22 +94,6 @@ function parseColorInput(input) {
 let colors = [];
 let selectedFormats = new Set(['hex', 'rgb', 'hsl', 'cmyk']);
 
-// Theme toggle
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark');
-    themeToggle.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
-    localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-});
-
-// Load saved theme
-if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark');
-    themeToggle.textContent = '☀️';
-}
-
 // Convert button
 document.getElementById('convert-btn').addEventListener('click', () => {
     const input = document.getElementById('color-input').value;
@@ -272,7 +256,7 @@ document.getElementById('export-pdf-btn').addEventListener('click', async () => 
 document.getElementById('export-png-btn').addEventListener('click', async () => {
     const element = document.getElementById('colors-grid');
     const canvas = await html2canvas(element, {
-        backgroundColor: body.classList.contains('dark') ? '#1a1d28' : '#ffffff',
+        backgroundColor: document.body.classList.contains('dark') ? '#1a1d28' : '#ffffff',
         scale: 2
     });
 
