@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
+import { FormatSelector } from "@/components/FormatSelector";
 import { ConversionResults } from "@/components/ConversionResults";
 import { HowItWorks } from "@/components/HowItWorks";
 import { SEOContent } from "@/components/SEOContent";
@@ -13,12 +14,46 @@ type Color = ColorFormats & { id: string };
 
 export default function Home() {
   const [colors, setColors] = useState<Color[]>([]);
+  const [selectedFormats, setSelectedFormats] = useState<Set<string>>(
+    new Set(["hex", "rgb", "hsl", "cmyk"])
+  );
 
   const handleConvert = (convertedColors: Color[]) => {
     setColors(convertedColors);
     setTimeout(() => {
       document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
+  };
+
+  const handleToggleFormat = (format: string) => {
+    const newFormats = new Set(selectedFormats);
+    if (newFormats.has(format)) {
+      if (newFormats.size > 1) {
+        newFormats.delete(format);
+      }
+    } else {
+      newFormats.add(format);
+    }
+    setSelectedFormats(newFormats);
+  };
+
+  const handleUpdateColor = (id: string, newColor: ColorFormats) => {
+    setColors(prev => prev.map(c => c.id === id ? { ...newColor, id } : c));
+  };
+
+  const handleMoveColor = (id: string, direction: "up" | "down") => {
+    setColors(prev => {
+      const index = prev.findIndex(c => c.id === id);
+      if (index === -1) return prev;
+      
+      const newColors = [...prev];
+      const newIndex = direction === "up" ? index - 1 : index + 1;
+      
+      if (newIndex < 0 || newIndex >= newColors.length) return prev;
+      
+      [newColors[index], newColors[newIndex]] = [newColors[newIndex], newColors[index]];
+      return newColors;
+    });
   };
 
   const exportAsPDF = async () => {
@@ -34,6 +69,15 @@ export default function Home() {
 
     yPosition += 15;
 
+    const allFormats = [
+      { key: "hex", label: "HEX" },
+      { key: "rgb", label: "RGB" },
+      { key: "hsl", label: "HSL" },
+      { key: "cmyk", label: "CMYK" },
+    ];
+
+    const visibleFormats = allFormats.filter(f => selectedFormats.has(f.key));
+
     colors.forEach((color) => {
       if (yPosition > 250) {
         pdf.addPage();
@@ -45,10 +89,13 @@ export default function Home() {
 
       pdf.setFontSize(10);
       pdf.setFont("helvetica", "normal");
-      pdf.text(`HEX: ${color.hex}`, 70, yPosition + 8);
-      pdf.text(`RGB: ${color.rgb}`, 70, yPosition + 16);
-      pdf.text(`HSL: ${color.hsl}`, 70, yPosition + 24);
-      pdf.text(`CMYK: ${color.cmyk}`, 70, yPosition + 32);
+      
+      let textY = yPosition + 8;
+      visibleFormats.forEach((format) => {
+        const key = format.key as keyof ColorFormats;
+        pdf.text(`${format.label}: ${color[key]}`, 70, textY);
+        textY += 8;
+      });
 
       yPosition += 45;
     });
@@ -77,10 +124,23 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header />
       <HeroSection onConvert={handleConvert} />
+      {colors.length > 0 && (
+        <div className="py-6 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <FormatSelector 
+              selectedFormats={selectedFormats}
+              onToggleFormat={handleToggleFormat}
+            />
+          </div>
+        </div>
+      )}
       <ConversionResults 
         colors={colors} 
+        selectedFormats={selectedFormats}
         onExportPDF={exportAsPDF}
         onExportPNG={exportAsPNG}
+        onUpdateColor={handleUpdateColor}
+        onMoveColor={handleMoveColor}
       />
       <HowItWorks />
       <SEOContent />

@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { ConversionResults as ConversionResultsComponent } from "../ConversionResults";
+import type { ColorFormats } from "@/lib/colorUtils";
 
 export default function ConversionResultsExample() {
-  const mockColors = [
+  const [mockColors, setMockColors] = useState([
     {
       id: "1",
       hex: "#FF6F61",
@@ -16,14 +18,27 @@ export default function ConversionResultsExample() {
       hsl: "hsl(239, 84%, 67%)",
       cmyk: "cmyk(59%, 58%, 0%, 5%)",
     },
-  ];
+  ]);
+
+  const [selectedFormats] = useState<Set<string>>(new Set(["hex", "rgb", "hsl"]));
+
+  const handleUpdateColor = (id: string, newColor: ColorFormats) => {
+    setMockColors(prev => prev.map(c => c.id === id ? { ...newColor, id } : c));
+  };
+
+  const handleMoveColor = (id: string, direction: "up" | "down") => {
+    console.log("Move color:", id, direction);
+  };
 
   return (
     <div className="bg-background">
       <ConversionResultsComponent 
         colors={mockColors}
+        selectedFormats={selectedFormats}
         onExportPDF={() => console.log("Export PDF")}
         onExportPNG={() => console.log("Export PNG")}
+        onUpdateColor={handleUpdateColor}
+        onMoveColor={handleMoveColor}
       />
     </div>
   );
