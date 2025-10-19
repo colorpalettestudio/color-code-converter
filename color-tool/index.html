@@ -36,6 +36,7 @@
                     <div class="button-group">
                         <button id="convert-btn" class="btn btn-primary">Convert</button>
                         <button id="sample-btn" class="btn btn-secondary">Try sample colors</button>
+                        <button id="studio-import-btn" class="btn btn-secondary">Import Studio Code</button>
                     </div>
                 </div>
 
@@ -165,6 +166,27 @@
         <!-- Ad Placeholder -->
         <div class="ad-slot">Ad Space</div>
     </main>
+
+    <!-- Studio Code Import Modal -->
+    <div id="studio-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Import from Studio Code</h3>
+                <button id="studio-modal-close" class="modal-close">&times;</button>
+            </div>
+            <p class="modal-description">Paste your studio code from Color Palette Fixer or other Color Palette Studio apps</p>
+            <input 
+                type="text" 
+                id="studio-code-input" 
+                placeholder="Paste studio code here (e.g., studiocode?dataStyleName=...)"
+                class="studio-input"
+            />
+            <div class="modal-actions">
+                <button id="studio-modal-cancel" class="btn btn-secondary">Cancel</button>
+                <button id="studio-modal-import" class="btn btn-primary">Import Colors</button>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">

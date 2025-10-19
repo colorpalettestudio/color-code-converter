@@ -206,6 +206,94 @@ document.getElementById('sample-btn').addEventListener('click', () => {
     document.getElementById('color-input').value = '#FF6F61\n#FFD166\n#06D6A0\n#118AB2\n#073B4C';
 });
 
+// Studio code import
+document.getElementById('studio-import-btn').addEventListener('click', () => {
+    const modal = document.getElementById('studio-modal');
+    modal.classList.remove('hidden');
+});
+
+document.getElementById('studio-modal-close').addEventListener('click', () => {
+    document.getElementById('studio-modal').classList.add('hidden');
+});
+
+document.getElementById('studio-modal-cancel').addEventListener('click', () => {
+    document.getElementById('studio-modal').classList.add('hidden');
+});
+
+document.getElementById('studio-modal-import').addEventListener('click', () => {
+    const studioCodeInput = document.getElementById('studio-code-input').value.trim();
+    
+    if (!studioCodeInput) {
+        alert('Please paste a studio code');
+        return;
+    }
+    
+    try {
+        const hexColors = parseStudioCode(studioCodeInput);
+        colors = [];
+        
+        hexColors.forEach((hex, index) => {
+            const parsed = parseColorInput(hex);
+            if (parsed) {
+                colors.push({ ...parsed, id: Date.now() + index });
+            }
+        });
+        
+        if (colors.length === 0) {
+            alert('No valid colors found in studio code');
+            return;
+        }
+        
+        renderResults();
+        document.getElementById('results').classList.remove('hidden');
+        document.getElementById('format-selector').classList.remove('hidden');
+        document.getElementById('studio-modal').classList.add('hidden');
+        document.getElementById('studio-code-input').value = '';
+        
+        alert(`Imported ${colors.length} colors from studio code!`);
+    } catch (error) {
+        alert(error.message || 'Invalid studio code format');
+    }
+});
+
+// Parse studio code function
+function parseStudioCode(studioCode) {
+    try {
+        // Remove "studiocode?" prefix if present
+        const queryString = studioCode.replace(/^studiocode\?/i, '');
+        
+        // Parse query string
+        const params = new URLSearchParams(queryString);
+        
+        // Get the colorNames parameter
+        const colorNamesParam = params.get('colorNames');
+        if (!colorNamesParam) {
+            throw new Error('No colorNames found in studio code');
+        }
+        
+        // Parse the JSON array
+        const colorData = JSON.parse(colorNamesParam);
+        
+        if (!Array.isArray(colorData)) {
+            throw new Error('Invalid color data format');
+        }
+        
+        // Extract hex values
+        const hexColors = colorData
+            .map(item => item.hex)
+            .filter(hex => typeof hex === 'string' && hex.startsWith('#'));
+        
+        if (hexColors.length === 0) {
+            throw new Error('No valid colors found in studio code');
+        }
+        
+        return hexColors;
+    } catch (error) {
+        console.error('Error parsing studio code:', error);
+        throw new Error('Invalid studio code format. Please check and try again.');
+    }
+}
+
 // Format checkboxes
 ['hex', 'rgb', 'hsl', 'cmyk'].forEach(format => {
     document.getElementById(`format-${format}`).addEventListener('change', (e) => {
