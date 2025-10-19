@@ -29,7 +29,8 @@ body.dark {
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: var(--bg-primary);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    background-attachment: fixed;
     color: var(--text-primary);
     line-height: 1.6;
     transition: background-color 0.3s, color 0.3s;
@@ -47,10 +48,25 @@ body {
     text-align: center;
 }
 
+.hero-badge {
+    display: inline-block;
+    background: var(--bg-muted);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
 .hero-title {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--primary), #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-subtitle {
@@ -124,6 +140,22 @@ body {
     flex-wrap: wrap;
     font-size: 0.875rem;
     color: var(--text-secondary);
+}
+
+/* Ad Slots */
+.ad-slot {
+    border: 1px dashed var(--border);
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 16px;
+    margin: 32px auto;
+    max-width: 728px;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    opacity: 0.5;
 }
 
 /* Format Selector */
@@ -319,6 +351,36 @@ body {
     color: var(--text-secondary);
 }
 
+/* Cross-Promo */
+.cross-promo {
+    padding: 3rem 0;
+}
+
+.promo-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.1));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.promo-icon {
+    font-size: 4rem;
+    flex-shrink: 0;
+}
+
+.promo-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.promo-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
 /* SEO Content */
 .seo-content {
     padding: 4rem 0;
@@ -333,6 +395,11 @@ body {
 .seo-content h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+.seo-content h2:first-of-type {
+    margin-top: 0;
 }
 
 .seo-content h3 {
@@ -412,5 +479,10 @@ footer p {
     
     .export-buttons {
         flex-direction: column;
+    }
+    
+    .promo-card {
+        flex-direction: column;
+        text-align: center;
     }
 }

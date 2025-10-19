@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { parseColorInput, type ColorFormats } from "@/lib/colorUtils";
-import { useToast } from "@/hooks/use-toast";
-import { Zap, Download, Lock } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 type HeroSectionProps = {
   onConvert: (colors: Array<ColorFormats & { id: string }>) => void;
@@ -11,15 +11,11 @@ type HeroSectionProps = {
 
 export function HeroSection({ onConvert }: HeroSectionProps) {
   const [inputValue, setInputValue] = useState("");
-  const { toast } = useToast();
 
-  const handleConvert = () => {
+  // Instant conversion - convert as user types
+  useEffect(() => {
     if (!inputValue.trim()) {
-      toast({
-        title: "Enter color codes",
-        description: "Please enter at least one color code",
-        variant: "destructive",
-      });
+      onConvert([]);
       return;
     }
 
@@ -33,33 +29,24 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
       }
     });
 
-    if (converted.length === 0) {
-      toast({
-        title: "No valid colors found",
-        description: "Please enter valid color codes (HEX, RGB, HSL, or CMYK)",
-        variant: "destructive",
-      });
-      return;
-    }
-
     onConvert(converted);
-    
-    toast({
-      title: "Colors converted!",
-      description: `${converted.length} color${converted.length > 1 ? "s" : ""} successfully converted`,
-    });
-  };
+  }, [inputValue, onConvert]);
 
   const loadSampleColors = () => {
-    setInputValue("#FF6F61\n#FFD166\n#06D6A0");
+    setInputValue("#FF6F61\n#FFD166\n#06D6A0\n#118AB2\n#073B4C");
   };
 
   return (
     <section className="py-16 px-4">
       <div className="container mx-auto max-w-4xl text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-hero-title">
-          Convert All Your Color Codes Instantly 🎨
+        <Badge variant="secondary" className="mb-4 px-4 py-2 text-sm font-medium" data-testid="badge-free-instant">
+          🆓 Free, Instant & No Sign-Up Needed
+        </Badge>
+        
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent" data-testid="text-hero-title">
+          Convert All Your Color Codes Instantly
         </h1>
+        
         <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
           Drop in your HEX, RGB, HSL, or CMYK values — get every format at once, ready to copy or export as a palette.
         </p>
@@ -73,28 +60,17 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
             data-testid="input-color-bulk"
           />
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button size="lg" onClick={handleConvert} data-testid="button-convert">
-              Convert
-            </Button>
             <Button size="lg" variant="outline" onClick={loadSampleColors} data-testid="button-sample">
+              <Sparkles className="h-4 w-4 mr-2" />
               Try sample colors
             </Button>
           </div>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <Zap className="h-4 w-4" />
-            Free & Instant
-          </div>
-          <div className="flex items-center gap-2">
-            <Download className="h-4 w-4" />
-            Export to PNG / PDF
-          </div>
-          <div className="flex items-center gap-2">
-            <Lock className="h-4 w-4" />
-            No sign-up required
-          </div>
+          <span>⚡ Free & Instant</span>
+          <span>💾 Export to PNG / PDF / Adobe</span>
+          <span>🔒 No sign-up required</span>
         </div>
       </div>
     </section>

@@ -173,11 +173,15 @@ function exportAsAdobeSwatch(colors) {
 let colors = [];
 let selectedFormats = new Set(['hex', 'rgb', 'hsl', 'cmyk']);
 
-// Convert button
-document.getElementById('convert-btn').addEventListener('click', () => {
-    const input = document.getElementById('color-input').value;
+// Instant conversion - convert as user types
+const colorInput = document.getElementById('color-input');
+colorInput.addEventListener('input', () => {
+    const input = colorInput.value;
+    
     if (!input.trim()) {
-        alert('Please enter at least one color code');
+        colors = [];
+        document.getElementById('results').classList.add('hidden');
+        document.getElementById('format-selector').classList.add('hidden');
         return;
     }
 
@@ -191,20 +195,20 @@ document.getElementById('convert-btn').addEventListener('click', () => {
         }
     });
 
-    if (colors.length === 0) {
-        alert('No valid colors found. Please enter valid color codes.');
-        return;
+    if (colors.length > 0) {
+        renderResults();
+        document.getElementById('results').classList.remove('hidden');
+        document.getElementById('format-selector').classList.remove('hidden');
+    } else {
+        document.getElementById('results').classList.add('hidden');
+        document.getElementById('format-selector').classList.add('hidden');
     }
-
-    renderResults();
-    document.getElementById('results').classList.remove('hidden');
-    document.getElementById('format-selector').classList.remove('hidden');
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
 });
 
 // Sample colors button
 document.getElementById('sample-btn').addEventListener('click', () => {
-    document.getElementById('color-input').value = '#FF6F61\n#FFD166\n#06D6A0';
+    document.getElementById('color-input').value = '#FF6F61\n#FFD166\n#06D6A0\n#118AB2\n#073B4C';
+    colorInput.dispatchEvent(new Event('input'));
 });
 
 // Format checkboxes

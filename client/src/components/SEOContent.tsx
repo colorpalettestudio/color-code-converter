@@ -17,7 +17,7 @@ export function SEOContent() {
             digital and print media.
           </p>
 
-          <h3>Why Convert Color Codes?</h3>
+          <h2>Why Convert Color Codes?</h2>
           <ul>
             <li><strong>Match your brand colors across apps</strong> — Photoshop, Canva, Figma, and other design tools often use different color formats</li>
             <li><strong>Prepare colors for web, print, and product packaging</strong> — Different media require different color spaces</li>
@@ -25,7 +25,7 @@ export function SEOContent() {
             <li><strong>Save time and avoid errors</strong> — Instant conversion means no manual calculations or guesswork</li>
           </ul>
 
-          <h3>Supported Color Formats</h3>
+          <h2>Supported Color Formats</h2>
           <p>Our converter supports all major color formats used in design and development:</p>
           <ul>
             <li><strong>HEX</strong> — The standard web format (e.g., #FF6F61)</li>
@@ -65,9 +65,8 @@ export function SEOContent() {
           <AccordionItem value="item-4">
             <AccordionTrigger>What formats can I export to?</AccordionTrigger>
             <AccordionContent>
-              You can export your converted color palette as a PDF or PNG image. The exported file includes all your 
-              colors with their converted values in all formats (HEX, RGB, HSL, and CMYK), making it perfect for 
-              sharing with team members or keeping as a reference.
+              You can export your converted color palette as a PDF, PNG image, or Adobe Swatch Exchange (.ase) file. 
+              The .ase format works directly with Photoshop, Illustrator, and other Adobe Creative Cloud apps.
             </AccordionContent>
           </AccordionItem>
 

@@ -238,8 +238,26 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased text-foreground;
+    background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--card)) 100%);
+    background-attachment: fixed;
   }
+}
+
+/* Ad Placeholder Styles */
+.ad-slot-placeholder {
+  border: 1px dashed hsl(var(--border));
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  padding: 16px;
+  margin: 32px auto;
+  max-width: 728px;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  opacity: 0.5;
 }
 
 /**

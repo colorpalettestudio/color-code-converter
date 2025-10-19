@@ -4,31 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Code Converter - Convert HEX to RGB, HSL, CMYK | Free Online Tool</title>
-    <meta name="description" content="Free color code converter. Instantly convert HEX to RGB, HSL, CMYK and vice versa. Convert multiple colors at once, copy all formats, and export palettes as PDF or PNG.">
+    <meta name="description" content="Free color code converter. Instantly convert HEX, RGB, HSL, and CMYK formats, and export your palette as PNG, PDF, or Adobe .ase. No sign-up required.">
+    <meta name="keywords" content="color code converter, hex to rgb, rgb to hex, hsl to hex, cmyk converter, color converter online, convert colors, color palette converter, adobe swatch">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free Color Code Converter - HEX, RGB, HSL, CMYK">
+    <meta property="og:description" content="Convert HEX, RGB, HSL, and CMYK values instantly. Free & fast! Export as PNG, PDF, or Adobe swatch.">
+    <meta property="og:image" content="https://yourdomain.com/og-preview.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Color Code Converter">
+    <meta name="twitter:description" content="Convert HEX, RGB, HSL, and CMYK values instantly. Free & fast!">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main>
         <section class="hero">
             <div class="container">
-                <h1 class="hero-title">Convert All Your Color Codes Instantly 🎨</h1>
+                <div class="hero-badge">🆓 Free, Instant & No Sign-Up Needed</div>
+                <h1 class="hero-title">Convert All Your Color Codes Instantly</h1>
                 <p class="hero-subtitle">Drop in your HEX, RGB, HSL, or CMYK values — get every format at once, ready to copy or export as a palette.</p>
                 
                 <div class="input-section">
                     <textarea id="color-input" placeholder="Enter colors (one per line or comma-separated)&#10;Examples: #FF6F61, rgb(255, 111, 97), hsl(5, 100%, 69%)"></textarea>
                     <div class="button-group">
-                        <button id="convert-btn" class="btn btn-primary">Convert</button>
                         <button id="sample-btn" class="btn btn-secondary">Try sample colors</button>
                     </div>
                 </div>
 
                 <div class="trust-badges">
                     <span>⚡ Free & Instant</span>
-                    <span>💾 Export to PNG / PDF</span>
+                    <span>💾 Export to PNG / PDF / Adobe</span>
                     <span>🔒 No sign-up required</span>
                 </div>
             </div>
         </section>
+
+        <!-- Ad Placeholder -->
+        <div class="ad-slot">Ad Space</div>
 
         <section id="format-selector" class="format-selector hidden">
             <div class="container">
@@ -59,7 +78,7 @@
 
         <section class="how-it-works">
             <div class="container">
-                <h2>How It Works (in 3 Simple Steps)</h2>
+                <h2>How It Works</h2>
                 <div class="steps">
                     <div class="step">
                         <div class="step-icon">📝</div>
@@ -70,18 +89,35 @@
                     <div class="step">
                         <div class="step-icon">⚡</div>
                         <div class="step-number">2</div>
-                        <h3>Click "Convert" — get instant formats</h3>
-                        <p>See all conversions displayed in a clean grid</p>
+                        <h3>See instant conversion</h3>
+                        <p>All formats appear as you type—no convert button needed</p>
                     </div>
                     <div class="step">
                         <div class="step-icon">💾</div>
                         <div class="step-number">3</div>
                         <h3>Export your full palette for design use</h3>
-                        <p>Download as PDF or PNG for your projects</p>
+                        <p>Download as PDF, PNG, or Adobe swatch for your projects</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Cross-Promo Banner -->
+        <section class="cross-promo">
+            <div class="container">
+                <div class="promo-card">
+                    <div class="promo-icon">🎨</div>
+                    <div class="promo-content">
+                        <h3>Want to fix your color palette next?</h3>
+                        <p>Try <strong>Color Palette Fixer</strong> — the only tool that diagnoses your palette and gives one-click fixes in 60 seconds.</p>
+                        <a href="#" class="btn btn-primary">Try Palette Fixer →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Placeholder -->
+        <div class="ad-slot">Ad Space</div>
 
         <section class="seo-content">
             <div class="container">
@@ -89,7 +125,7 @@
                     <h2>What Is a Color Code Converter?</h2>
                     <p>A color code converter lets you translate colors between different systems (HEX, RGB, HSL, CMYK, and more). Designers, web developers, and brand builders use converters to make sure their colors look consistent across digital and print media.</p>
 
-                    <h3>Why Convert Color Codes?</h3>
+                    <h2>Why Convert Color Codes?</h2>
                     <ul>
                         <li><strong>Match your brand colors across apps</strong> — Photoshop, Canva, Figma, and other design tools often use different color formats</li>
                         <li><strong>Prepare colors for web, print, and product packaging</strong> — Different media require different color spaces</li>
@@ -97,7 +133,16 @@
                         <li><strong>Save time and avoid errors</strong> — Instant conversion means no manual calculations or guesswork</li>
                     </ul>
 
-                    <h3>Frequently Asked Questions</h3>
+                    <h2>Supported Color Formats</h2>
+                    <p>Our converter supports all major color formats used in design and development:</p>
+                    <ul>
+                        <li><strong>HEX</strong> — The standard web format (e.g., #FF6F61)</li>
+                        <li><strong>RGB</strong> — Red, Green, Blue values (e.g., rgb(255, 111, 97))</li>
+                        <li><strong>HSL</strong> — Hue, Saturation, Lightness (e.g., hsl(5, 100%, 69%))</li>
+                        <li><strong>CMYK</strong> — Cyan, Magenta, Yellow, Black for print (e.g., cmyk(0%, 56%, 62%, 0%))</li>
+                    </ul>
+
+                    <h2>Frequently Asked Questions</h2>
                     <div class="faq">
                         <details>
                             <summary>Can I convert multiple colors at once?</summary>
@@ -109,12 +154,15 @@
                         </details>
                         <details>
                             <summary>What formats can I export to?</summary>
-                            <p>You can export your converted color palette as a PDF, PNG image, or Adobe Swatch Exchange (.ase) file. The .ase format works with Photoshop, Illustrator, and other Adobe Creative Cloud apps.</p>
+                            <p>You can export your converted color palette as a PDF, PNG image, or Adobe Swatch Exchange (.ase) file. The .ase format works directly with Photoshop, Illustrator, and other Adobe Creative Cloud apps.</p>
                         </details>
                     </div>
                 </article>
             </div>
         </section>
+
+        <!-- Ad Placeholder -->
+        <div class="ad-slot">Ad Space</div>
     </main>
 
     <footer>
