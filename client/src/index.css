@@ -497,11 +497,41 @@
     inset: -1px;
   }
 
-  /* Rainbow gradient text effect */
+  /* Rainbow gradient text effect with animation */
   .gradient-text {
-    background: linear-gradient(90deg, #ff4433, #ffcc00, #00dd77, #3388ff, #aa44ff);
+    background: linear-gradient(
+      90deg,
+      #ff6f61,
+      #fdd66f,
+      #8ed6a9,
+      #6fa8ff,
+      #b76fff,
+      #ff6f61
+    );
+    background-size: 400% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: rainbowShift 10s ease-in-out infinite;
+  }
+
+  /* Subtle horizontal movement */
+  @keyframes rainbowShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Accessibility: disable animation if user prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .gradient-text {
+      animation: none;
+    }
   }
 }
