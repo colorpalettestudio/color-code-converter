@@ -1,8 +1,19 @@
 import { useState } from "react";
-import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X } from "lucide-react";
+import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import type { ColorFormats } from "@/lib/colorUtils";
 import { useToast } from "@/hooks/use-toast";
 import { parseColorInput } from "@/lib/colorUtils";
@@ -16,6 +27,7 @@ type ConversionResultsProps = {
   onUpdateColor: (id: string, newColor: ColorFormats) => void;
   onMoveColor: (id: string, direction: "up" | "down") => void;
   onDeleteColor: (id: string) => void;
+  onClearPalette: () => void;
 };
 
 export function ConversionResults({ 
@@ -26,7 +38,8 @@ export function ConversionResults({
   onExportASE,
   onUpdateColor,
   onMoveColor,
-  onDeleteColor
+  onDeleteColor,
+  onClearPalette
 }: ConversionResultsProps) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [editingColorId, setEditingColorId] = useState<string | null>(null);
@@ -116,6 +129,35 @@ export function ConversionResults({
               <Palette className="h-4 w-4 mr-2" />
               Copy Entire Palette
             </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button 
+                  variant="outline"
+                  data-testid="button-clear-palette"
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Clear Palette
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Clear all colors?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will remove all {colors.length} color{colors.length !== 1 ? 's' : ''} from your palette. This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel data-testid="button-cancel-clear">Cancel</AlertDialogCancel>
+                  <AlertDialogAction 
+                    onClick={onClearPalette}
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    data-testid="button-confirm-clear"
+                  >
+                    Clear All
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
             <Button onClick={onExportPDF} variant="secondary" data-testid="button-export-pdf-main">
               <Download className="h-4 w-4 mr-2" />
               PDF

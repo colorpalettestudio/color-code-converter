@@ -59,6 +59,10 @@ export default function Home() {
     setColors(prev => prev.filter(c => c.id !== id));
   };
 
+  const handleClearPalette = () => {
+    setColors([]);
+  };
+
   const exportAsPDF = async () => {
     if (colors.length === 0) return;
 
@@ -222,6 +226,7 @@ export default function Home() {
         onUpdateColor={handleUpdateColor}
         onMoveColor={handleMoveColor}
         onDeleteColor={handleDeleteColor}
+        onClearPalette={handleClearPalette}
       />
       <HowItWorks />
       <CrossPromo />
