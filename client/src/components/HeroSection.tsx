@@ -55,12 +55,53 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
     }
 
     // Regular color code parsing
-    const lines = trimmedInput.split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+    // Smart split: split on newlines, or commas that are NOT inside parentheses
+    const lines: string[] = [];
+    let currentLine = '';
+    let parenDepth = 0;
+    
+    for (let i = 0; i < trimmedInput.length; i++) {
+      const char = trimmedInput[i];
+      
+      if (char === '(') {
+        parenDepth++;
+        currentLine += char;
+      } else if (char === ')') {
+        parenDepth--;
+        currentLine += char;
+      } else if (char === '\n') {
+        // Always split on newlines
+        if (currentLine.trim()) {
+          lines.push(currentLine.trim());
+        }
+        currentLine = '';
+      } else if (char === ',' && parenDepth === 0) {
+        // Only split on commas outside of parentheses
+        if (currentLine.trim()) {
+          lines.push(currentLine.trim());
+        }
+        currentLine = '';
+      } else {
+        currentLine += char;
+      }
+    }
+    
+    // Don't forget the last line
+    if (currentLine.trim()) {
+      lines.push(currentLine.trim());
+    }
+    
+    // Deduplicate colors by their hex value
+    const seenHex = new Set<string>();
     
     lines.forEach((line, index) => {
       const parsed = parseColorInput(line);
       if (parsed) {
-        converted.push({ ...parsed, id: `${Date.now()}-${index}` });
+        // Only add if we haven't seen this hex color before
+        if (!seenHex.has(parsed.hex)) {
+          seenHex.add(parsed.hex);
+          converted.push({ ...parsed, id: `${Date.now()}-${index}` });
+        }
       }
     });
 
