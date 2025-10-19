@@ -12,6 +12,7 @@ type ConversionResultsProps = {
   selectedFormats: Set<string>;
   onExportPDF: () => void;
   onExportPNG: () => void;
+  onExportASE: () => void;
   onUpdateColor: (id: string, newColor: ColorFormats) => void;
   onMoveColor: (id: string, direction: "up" | "down") => void;
 };
@@ -21,6 +22,7 @@ export function ConversionResults({
   selectedFormats,
   onExportPDF, 
   onExportPNG,
+  onExportASE,
   onUpdateColor,
   onMoveColor
 }: ConversionResultsProps) {
@@ -114,11 +116,15 @@ export function ConversionResults({
             </Button>
             <Button onClick={onExportPDF} variant="secondary" data-testid="button-export-pdf-main">
               <Download className="h-4 w-4 mr-2" />
-              Export PDF
+              PDF
             </Button>
             <Button onClick={onExportPNG} variant="secondary" data-testid="button-export-png-main">
               <Download className="h-4 w-4 mr-2" />
-              Export PNG
+              PNG
+            </Button>
+            <Button onClick={onExportASE} variant="secondary" data-testid="button-export-ase-main">
+              <Download className="h-4 w-4 mr-2" />
+              Adobe (.ase)
             </Button>
           </div>
         </div>

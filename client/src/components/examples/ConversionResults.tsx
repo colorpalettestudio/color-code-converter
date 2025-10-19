@@ -37,6 +37,7 @@ export default function ConversionResultsExample() {
         selectedFormats={selectedFormats}
         onExportPDF={() => console.log("Export PDF")}
         onExportPNG={() => console.log("Export PNG")}
+        onExportASE={() => console.log("Export ASE")}
         onUpdateColor={handleUpdateColor}
         onMoveColor={handleMoveColor}
       />

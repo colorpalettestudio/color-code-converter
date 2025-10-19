@@ -90,6 +90,85 @@ function parseColorInput(input) {
     return null;
 }
 
+// Adobe Swatch Export (.ase)
+function exportAsAdobeSwatch(colors) {
+    function writeString(str) {
+        const arr = [];
+        for (let i = 0; i < str.length; i++) {
+            arr.push(0);
+            arr.push(str.charCodeAt(i));
+        }
+        arr.push(0, 0);
+        return new Uint8Array(arr);
+    }
+
+    function writeUInt16(val) {
+        return new Uint8Array([(val >> 8) & 0xff, val & 0xff]);
+    }
+
+    function writeUInt32(val) {
+        return new Uint8Array([
+            (val >> 24) & 0xff,
+            (val >> 16) & 0xff,
+            (val >> 8) & 0xff,
+            val & 0xff
+        ]);
+    }
+
+    function writeFloat(val) {
+        const buffer = new ArrayBuffer(4);
+        const view = new DataView(buffer);
+        view.setFloat32(0, val, false);
+        return new Uint8Array(buffer);
+    }
+
+    function hexToRgbFloat(hex) {
+        const r = parseInt(hex.slice(1, 3), 16) / 255;
+        const g = parseInt(hex.slice(3, 5), 16) / 255;
+        const b = parseInt(hex.slice(5, 7), 16) / 255;
+        return [r, g, b];
+    }
+
+    const chunks = [];
+    chunks.push(new Uint8Array([0x41, 0x53, 0x45, 0x46])); // "ASEF"
+    chunks.push(writeUInt16(1)); // version major
+    chunks.push(writeUInt16(0)); // version minor
+    chunks.push(writeUInt32(colors.length)); // number of blocks
+
+    colors.forEach((color, index) => {
+        const name = `Color ${index + 1}`;
+        const nameBytes = writeString(name);
+        const [r, g, b] = hexToRgbFloat(color.hex);
+
+        chunks.push(writeUInt16(0x0001)); // block type
+        const blockLength = 4 + nameBytes.length + 4 + 4 + 12;
+        chunks.push(writeUInt32(blockLength));
+        chunks.push(writeUInt16(name.length + 1));
+        chunks.push(nameBytes);
+        chunks.push(new Uint8Array([0x52, 0x47, 0x42, 0x20])); // "RGB "
+        chunks.push(writeFloat(r));
+        chunks.push(writeFloat(g));
+        chunks.push(writeFloat(b));
+        chunks.push(writeUInt16(0)); // color type
+    });
+
+    const totalLength = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+    const aseFile = new Uint8Array(totalLength);
+    let offset = 0;
+    chunks.forEach(chunk => {
+        aseFile.set(chunk, offset);
+        offset += chunk.length;
+    });
+
+    const blob = new Blob([aseFile], { type: 'application/octet-stream' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.download = 'color-palette.ase';
+    link.href = url;
+    link.click();
+    URL.revokeObjectURL(url);
+}
+
 // State
 let colors = [];
 let selectedFormats = new Set(['hex', 'rgb', 'hsl', 'cmyk']);
@@ -252,7 +331,7 @@ document.getElementById('export-pdf-btn').addEventListener('click', async () => 
     pdf.save('color-palette.pdf');
 });
 
-// Export PNG - Custom canvas implementation
+// Export PNG
 document.getElementById('export-png-btn').addEventListener('click', async () => {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -275,11 +354,9 @@ document.getElementById('export-png-btn').addEventListener('click', async () => 
     canvas.width = cardWidth + (padding * 2);
     canvas.height = (cardHeight + gap) * colors.length + padding * 2 + 40;
 
-    // Background
     ctx.fillStyle = isDark ? '#1a1d28' : '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Title
     ctx.fillStyle = isDark ? '#f3f4f6' : '#1a1d28';
     ctx.font = 'bold 24px sans-serif';
     ctx.fillText('Color Palette', padding, padding + 20);
@@ -287,19 +364,15 @@ document.getElementById('export-png-btn').addEventListener('click', async () => 
     colors.forEach((color, index) => {
         const y = padding + 60 + index * (cardHeight + gap);
         
-        // Card background
         ctx.fillStyle = isDark ? '#252933' : '#f5f5f5';
         ctx.fillRect(padding, y, cardWidth, cardHeight);
 
-        // Color swatch
         ctx.fillStyle = color.hex;
         ctx.fillRect(padding + 10, y + 10, 100, 80);
 
-        // Border for swatch
         ctx.strokeStyle = isDark ? '#374151' : '#e5e7eb';
         ctx.strokeRect(padding + 10, y + 10, 100, 80);
 
-        // Format labels and values
         const startX = padding + 130;
         const formatSpacing = 180;
         
@@ -307,19 +380,16 @@ document.getElementById('export-png-btn').addEventListener('click', async () => 
             const x = startX + Math.floor(fIndex / 2) * formatSpacing;
             const yOffset = y + 30 + (fIndex % 2) * 40;
             
-            // Format label
             ctx.fillStyle = isDark ? '#9ca3af' : '#6b7280';
             ctx.font = 'bold 10px sans-serif';
             ctx.fillText(format.label, x, yOffset);
             
-            // Format value
             ctx.fillStyle = isDark ? '#f3f4f6' : '#1a1d28';
             ctx.font = '13px monospace';
             ctx.fillText(color[format.key], x, yOffset + 18);
         });
     });
 
-    // Download
     canvas.toBlob((blob) => {
         if (blob) {
             const url = URL.createObjectURL(blob);
@@ -330,4 +400,9 @@ document.getElementById('export-png-btn').addEventListener('click', async () => 
             URL.revokeObjectURL(url);
         }
     }, 'image/png');
+});
+
+// Export Adobe Swatch
+document.getElementById('export-ase-btn').addEventListener('click', () => {
+    exportAsAdobeSwatch(colors);
 });

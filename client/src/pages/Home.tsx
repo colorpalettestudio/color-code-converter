@@ -6,6 +6,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { SEOContent } from "@/components/SEOContent";
 import { Footer } from "@/components/Footer";
 import type { ColorFormats } from "@/lib/colorUtils";
+import { exportAsAdobeSwatch } from "@/lib/adobeSwatchExport";
 import jsPDF from "jspdf";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -187,6 +188,11 @@ export default function Home() {
     }, 'image/png');
   };
 
+  const exportAsASE = () => {
+    if (colors.length === 0) return;
+    exportAsAdobeSwatch(colors, 'color-palette.ase');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <HeroSection onConvert={handleConvert} />
@@ -205,6 +211,7 @@ export default function Home() {
         selectedFormats={selectedFormats}
         onExportPDF={exportAsPDF}
         onExportPNG={exportAsPNG}
+        onExportASE={exportAsASE}
         onUpdateColor={handleUpdateColor}
         onMoveColor={handleMoveColor}
       />
