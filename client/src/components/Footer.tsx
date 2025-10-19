@@ -25,20 +25,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-gradient-generator">
-                  Gradient Generator
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-contrast-checker">
+                <a href="https://thecolorpalettestudio.com/pages/free-color-contrast-checker" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-contrast-checker">
                   Contrast Checker
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-palette-from-image">
-                  Extract Palette from Image
                   <ExternalLink className="h-3 w-3" />
                 </a>
               </li>
@@ -49,18 +37,21 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-color-theory">
-                  Color Theory Guide
+                <a href="https://thecolorpalettestudio.com/pages/live-workshop-how-to-fix-a-color-palette" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-free-workshop">
+                  Free Workshop
+                  <ExternalLink className="h-3 w-3" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-brand-colors">
-                  Popular Brand Colors
+                <a href="https://www.youtube.com/@color.palette.studio/videos" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-videos">
+                  Videos
+                  <ExternalLink className="h-3 w-3" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-blog">
-                  Blog & Tutorials
+                <a href="https://thecolorpalettestudio.com/pages/contact" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1" data-testid="link-contact">
+                  Contact
+                  <ExternalLink className="h-3 w-3" />
                 </a>
               </li>
             </ul>
