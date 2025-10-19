@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X, Trash2, Camera, Plus } from "lucide-react";
+import { Copy, Check, Download, ChevronUp, ChevronDown, Palette, X, Trash2, Camera, Plus, MoreHorizontal, FileText, Image, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
 import type { ColorFormats } from "@/lib/colorUtils";
 import { useToast } from "@/hooks/use-toast";
@@ -192,7 +199,8 @@ export function ConversionResults({
           <div className="text-lg font-semibold">
             Color Palette ({colors.length})
           </div>
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap gap-2 justify-center">
+            {/* Add Color - Primary Action */}
             <Dialog open={addColorDialogOpen} onOpenChange={setAddColorDialogOpen}>
               <DialogTrigger asChild>
                 <Button 
@@ -238,32 +246,63 @@ export function ConversionResults({
                 </DialogFooter>
               </DialogContent>
             </Dialog>
+
+            {/* Copy Palette - Secondary Action */}
             <Button 
               onClick={copyEntirePalette} 
               variant="outline"
               data-testid="button-copy-entire-palette"
             >
-              <Palette className="h-4 w-4 mr-2" />
-              Copy Entire Palette
+              <Copy className="h-4 w-4 mr-2" />
+              Copy Palette
             </Button>
-            <Button 
-              onClick={generatePalettePreview} 
-              variant="outline"
-              data-testid="button-palette-preview"
-            >
-              <Camera className="h-4 w-4 mr-2" />
-              Preview Snapshot
-            </Button>
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button 
-                  variant="outline"
-                  data-testid="button-clear-palette"
-                >
-                  <Trash2 className="h-4 w-4 mr-2" />
-                  Clear Palette
+
+            {/* Export Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" data-testid="button-export-dropdown">
+                  <Download className="h-4 w-4 mr-2" />
+                  Export
                 </Button>
-              </AlertDialogTrigger>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={onExportPDF} data-testid="button-export-pdf">
+                  <FileText className="h-4 w-4 mr-2" />
+                  Export as PDF
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={onExportPNG} data-testid="button-export-png">
+                  <Image className="h-4 w-4 mr-2" />
+                  Export as PNG
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={onExportASE} data-testid="button-export-ase">
+                  <Wrench className="h-4 w-4 mr-2" />
+                  Export as Adobe (.ase)
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={generatePalettePreview} data-testid="button-palette-preview">
+                  <Camera className="h-4 w-4 mr-2" />
+                  Preview Snapshot
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* More Actions Dropdown */}
+            <AlertDialog>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="icon" data-testid="button-more-actions">
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <AlertDialogTrigger asChild>
+                    <DropdownMenuItem data-testid="button-clear-palette" onSelect={(e) => e.preventDefault()}>
+                      <Trash2 className="h-4 w-4 mr-2" />
+                      Clear Palette
+                    </DropdownMenuItem>
+                  </AlertDialogTrigger>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <AlertDialogContent>
                 <AlertDialogHeader>
                   <AlertDialogTitle>Clear all colors?</AlertDialogTitle>
@@ -283,18 +322,6 @@ export function ConversionResults({
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
-            <Button onClick={onExportPDF} variant="secondary" data-testid="button-export-pdf-main">
-              <Download className="h-4 w-4 mr-2" />
-              PDF
-            </Button>
-            <Button onClick={onExportPNG} variant="secondary" data-testid="button-export-png-main">
-              <Download className="h-4 w-4 mr-2" />
-              PNG
-            </Button>
-            <Button onClick={onExportASE} variant="secondary" data-testid="button-export-ase-main">
-              <Download className="h-4 w-4 mr-2" />
-              Adobe (.ase)
-            </Button>
           </div>
         </div>
 
