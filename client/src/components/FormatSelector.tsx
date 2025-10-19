@@ -1,6 +1,13 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ListFilter, Check } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type FormatSelectorProps = {
   selectedFormats: Set<string>;
@@ -15,29 +22,41 @@ export function FormatSelector({ selectedFormats, onToggleFormat }: FormatSelect
     { key: "cmyk", label: "CMYK" },
   ];
 
+  const selectedCount = selectedFormats.size;
+  const totalCount = formats.length;
+
   return (
-    <Card>
-      <CardContent className="p-4">
-        <div className="flex flex-wrap items-center gap-6">
-          <span className="text-sm font-medium">Show formats:</span>
+    <div className="flex justify-center">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button 
+            variant="outline" 
+            size="sm"
+            data-testid="button-show-formats"
+          >
+            <ListFilter className="h-4 w-4 mr-2" />
+            Show Formats ({selectedCount}/{totalCount})
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="center" className="w-48">
           {formats.map((format) => (
-            <div key={format.key} className="flex items-center gap-2">
-              <Checkbox
-                id={`format-${format.key}`}
-                checked={selectedFormats.has(format.key)}
-                onCheckedChange={() => onToggleFormat(format.key)}
-                data-testid={`checkbox-format-${format.key}`}
-              />
-              <Label
-                htmlFor={`format-${format.key}`}
-                className="text-sm font-medium cursor-pointer"
-              >
-                {format.label}
-              </Label>
-            </div>
+            <DropdownMenuItem
+              key={format.key}
+              onSelect={(e) => {
+                e.preventDefault();
+                onToggleFormat(format.key);
+              }}
+              data-testid={`checkbox-format-${format.key}`}
+              className="flex items-center justify-between cursor-pointer"
+            >
+              <span>{format.label}</span>
+              {selectedFormats.has(format.key) && (
+                <Check className="h-4 w-4 text-primary" />
+              )}
+            </DropdownMenuItem>
           ))}
-        </div>
-      </CardContent>
-    </Card>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 }
