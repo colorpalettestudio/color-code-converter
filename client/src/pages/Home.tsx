@@ -259,7 +259,7 @@ export default function Home() {
         <div className="ad-label">Advertisement</div>
         <div className="ad-choices"></div>
         <div className="ad-content">
-          <div className="ad-image">🎨</div>
+          <div className="ad-image">☺</div>
           <div className="ad-text">
             <div className="ad-headline">Professional Color Tools for Designers - Try Free</div>
             <div className="ad-url">www.adobe.com/color</div>
@@ -304,7 +304,7 @@ export default function Home() {
         <div className="ad-label">Advertisement</div>
         <div className="ad-choices"></div>
         <div className="ad-content">
-          <div className="ad-image">🎨</div>
+          <div className="ad-image">☺</div>
           <div className="ad-text">
             <div className="ad-headline">Figma - The Collaborative Design Platform</div>
             <div className="ad-url">www.figma.com</div>

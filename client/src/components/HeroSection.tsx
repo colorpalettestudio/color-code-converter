@@ -164,7 +164,7 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
 
         <div className="mb-8">
           <Textarea
-            placeholder="Enter colors (one per line or comma-separated)&#10;Examples: #FF6F61, rgb(255, 111, 97), hsl(5, 100%, 69%)&#10;&#10;🎨 Tip: You can also paste studio code directly here!"
+            placeholder="Enter colors (one per line or comma-separated)&#10;Examples: #FF6F61, rgb(255, 111, 97), hsl(5, 100%, 69%)&#10;&#10;☺ Tip: You can also paste studio code directly here!"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             className="min-h-32 font-mono text-base mb-4"
@@ -182,9 +182,9 @@ export function HeroSection({ onConvert }: HeroSectionProps) {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
-          <span>🎨 Free & Instant</span>
-          <span>🎨 Export to PNG / PDF / Adobe</span>
-          <span>🎨 No sign-up required</span>
+          <span>☺ Free & Instant</span>
+          <span>☺ Export to PNG / PDF / Adobe</span>
+          <span>☺ No sign-up required</span>
         </div>
       </div>
     </section>
