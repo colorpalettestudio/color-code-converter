@@ -22,6 +22,14 @@ export default function Home() {
 
   const handleConvert = (convertedColors: Color[]) => {
     setColors(convertedColors);
+    
+    // Scroll to results section after conversion
+    setTimeout(() => {
+      const resultsSection = document.getElementById('conversion-results');
+      if (resultsSection) {
+        resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   const handleToggleFormat = (format: string) => {

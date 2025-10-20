@@ -212,7 +212,7 @@ export function ConversionResults({
   };
 
   return (
-    <section className="py-12 px-4 bg-muted/30" id="results">
+    <section className="py-12 px-4 bg-muted/30" id="conversion-results">
       <div className="container mx-auto max-w-6xl">
         <h2 className="text-3xl font-bold mb-2 text-center" data-testid="heading-conversion-results">
           HEX to RGB, HSL & CMYK Converter Results
