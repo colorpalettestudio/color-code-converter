@@ -119,7 +119,7 @@ export default function Terms() {
               If you have any questions about these Terms, please contact us at:
             </p>
             <p className="mt-2">
-              📧 <a href="mailto:support@thecolorpalettestudio.com" className="text-primary hover:underline">support@thecolorpalettestudio.com</a>
+              📧 <a href="mailto:sam@thecolorpalettestudio.com" className="text-primary hover:underline">sam@thecolorpalettestudio.com</a>
             </p>
           </section>
         </div>

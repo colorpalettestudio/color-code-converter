@@ -130,7 +130,7 @@ export default function PrivacyPolicy() {
               If you have questions about this Privacy Policy or your data, please contact us at:
             </p>
             <p className="mb-2">
-              📧 <a href="mailto:support@thecolorpalettestudio.com" className="text-primary hover:underline">support@thecolorpalettestudio.com</a>
+              📧 <a href="mailto:sam@thecolorpalettestudio.com" className="text-primary hover:underline">sam@thecolorpalettestudio.com</a>
             </p>
             <p>
               or via our{" "}
