@@ -1,0 +1,80 @@
+Terms of Use
+
+Last updated: October 2025
+
+Welcome to The Color Code Converter (“we,” “our,” or “us”).
+By accessing or using https://thecolorcodeconverter.com/
+ (the “Site”), you agree to be bound by these Terms of Use.
+If you do not agree with these terms, please do not use the Site.
+
+1. Acceptance of Terms
+
+By using our website and any of its tools or services, you confirm that you are at least 13 years old and legally able to enter into this agreement.
+Your continued use of the Site constitutes your acceptance of these Terms and our Privacy Policy
+.
+
+2. Description of the Service
+
+The Color Code Converter provides free online tools to convert and format color codes (such as HEX, RGB, HSL, and CMYK).
+The Site is provided for informational and educational purposes only — we make no guarantees about accuracy or suitability for any particular purpose.
+
+3. Intellectual Property
+
+All content on this Site, including but not limited to text, design, code, graphics, and logos, is the property of The Color Palette Studio (our parent brand) or its licensors, unless otherwise stated.
+You may not reproduce, distribute, or modify any content from this Site without written permission.
+
+4. Acceptable Use
+
+When using this Site, you agree not to:
+
+Use the Site in any way that may damage, disable, or interfere with its operation
+
+Attempt to hack, modify, or disrupt the Site or its underlying code
+
+Use automated tools (such as bots or scrapers) to extract or republish data
+
+Upload or distribute malicious code or harmful materials
+
+We reserve the right to restrict access to any user who violates these terms.
+
+5. Third-Party Services and Ads
+
+We use Google AdSense to display advertisements and Google Analytics to measure website traffic.
+These third parties may use cookies or tracking technologies in accordance with their own privacy policies.
+We are not responsible for the content, privacy, or practices of any third-party sites linked from this Site.
+
+6. Disclaimer of Warranties
+
+The Site and all content are provided “as is” and without warranty of any kind.
+We make no guarantees that:
+
+The Site will be uninterrupted or error-free
+
+The results from using the Site will be accurate or reliable
+
+Any defects will be corrected
+
+You use the Site at your own risk.
+
+7. Limitation of Liability
+
+To the maximum extent permitted by law, The Color Palette Studio and its affiliates shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of this Site or reliance on its content.
+
+8. Changes to the Site
+
+We may update, change, or remove features of the Site at any time without prior notice.
+We are not obligated to maintain or continue providing this Site indefinitely.
+
+9. Changes to These Terms
+
+We may revise these Terms of Use at any time. Updates will be posted on this page with the new “Last updated” date.
+By continuing to use the Site after changes are posted, you agree to the revised Terms.
+
+10. Governing Law
+
+These Terms are governed by the laws of the United States and the State of Tennessee, without regard to conflict of law principles.
+
+11. Contact Information
+
+If you have any questions about these Terms, please contact us at:
+📧 support@thecolorpalettestudio.com

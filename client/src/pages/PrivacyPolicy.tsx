@@ -4,7 +4,7 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen py-16 px-4">
       <div className="container mx-auto max-w-4xl">
-        <Link href="/" className="text-primary hover-elevate inline-block mb-8">
+        <Link href="/" className="text-primary hover-elevate inline-block mb-8" data-testid="link-back-home">
           ← Back to Home
         </Link>
         
@@ -12,71 +12,131 @@ export default function PrivacyPolicy() {
         
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <p className="text-muted-foreground mb-6">
-            <strong>Effective Date:</strong> October 19, 2025
+            <strong>Last updated:</strong> October 2025
+          </p>
+
+          <p className="mb-6">
+            Welcome to The Color Code Converter ("we," "our," or "us"). Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use{" "}
+            <a href="https://thecolorcodeconverter.com/" className="text-primary hover:underline">
+              https://thecolorcodeconverter.com/
+            </a>{" "}
+            (the "Site").
           </p>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
-            <p>
-              The Color Code Converter ("we," "our," or "us") respects your privacy. This Privacy Policy explains how we collect, use, and protect information when you use our color conversion tool.
+            <h2 className="text-2xl font-semibold mb-4">1. Information We Collect</h2>
+            <p className="mb-4">
+              We do not require you to sign up or submit personal data to use our tool. However, we may collect certain information automatically, including:
             </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Information We Collect</h2>
-            <p>Our service is designed to be privacy-friendly:</p>
             <ul className="list-disc pl-6 mb-4">
-              <li><strong>Color Data:</strong> All color conversions are performed locally in your browser. We do not store or transmit your color codes to our servers.</li>
-              <li><strong>Analytics:</strong> We may use cookies and similar technologies to understand how visitors use our site (Google Analytics or similar).</li>
-              <li><strong>Advertising:</strong> Third-party advertising partners may use cookies to serve relevant ads.</li>
+              <li><strong>Usage Data:</strong> Your browser type, IP address, operating system, and referring URLs.</li>
+              <li><strong>Analytics Data:</strong> Through Google Analytics, which helps us understand how visitors use our Site.</li>
+              <li><strong>Advertising Data:</strong> Through Google AdSense, which may use cookies or similar technologies to show relevant ads.</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">How We Use Information</h2>
-            <p>We use collected information to:</p>
+            <h2 className="text-2xl font-semibold mb-4">2. Use of Cookies</h2>
+            <p className="mb-4">
+              Cookies are small text files stored on your device. We use cookies to:
+            </p>
             <ul className="list-disc pl-6 mb-4">
-              <li>Improve our service and user experience</li>
-              <li>Analyze site usage and performance</li>
-              <li>Display relevant advertisements</li>
+              <li>Measure and improve Site performance</li>
+              <li>Analyze visitor traffic (Google Analytics)</li>
+              <li>Display personalized ads (Google AdSense)</li>
+            </ul>
+            <p className="mb-4">
+              You can disable cookies in your browser settings, but parts of the Site may not function properly.
+            </p>
+            <p>
+              To learn more about how Google uses data, visit:{" "}
+              <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                https://policies.google.com/technologies/partner-sites
+              </a>
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">3. Third-Party Services</h2>
+            <p className="mb-4">
+              We use third-party services to operate and improve this website:
+            </p>
+            <ul className="list-disc pl-6 mb-4">
+              <li><strong>Google Analytics:</strong> Tracks anonymized usage for traffic and behavior insights.</li>
+              <li><strong>Google AdSense:</strong> Displays relevant ads and may use cookies or device identifiers for ad personalization.</li>
+            </ul>
+            <p className="mb-4">
+              You can opt out of personalized advertising by visiting:{" "}
+              <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                https://www.google.com/settings/ads
+              </a>
+            </p>
+            <p>
+              We do not control or have access to data collected by these third-party tools.
+            </p>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">4. Data Protection and Retention</h2>
+            <ul className="list-disc pl-6 mb-4">
+              <li>We do not sell or share your personal data.</li>
+              <li>We retain aggregated analytics data only as long as necessary for performance insights.</li>
             </ul>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Third-Party Services</h2>
+            <h2 className="text-2xl font-semibold mb-4">5. Links to Other Websites</h2>
             <p>
-              We may use third-party services such as Google AdSense for advertising. These services may collect information about your visits to this and other websites to provide ads about goods and services of interest to you.
+              Our Site may contain links to external websites (for example, The Color Palette Studio or other tools we own). We are not responsible for their content or privacy practices. Please review their policies before using those sites.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Cookies</h2>
+            <h2 className="text-2xl font-semibold mb-4">6. Your Choices</h2>
+            <ul className="list-disc pl-6 mb-4">
+              <li>You can disable cookies via your browser.</li>
+              <li>
+                You can opt out of Google Analytics tracking via the{" "}
+                <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  Google Analytics Opt-Out Add-on
+                </a>.
+              </li>
+              <li>
+                You can manage ad personalization in your{" "}
+                <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  Google Ads Settings
+                </a>.
+              </li>
+            </ul>
+          </section>
+
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">7. Children's Privacy</h2>
             <p>
-              We use cookies to store your theme preference (light/dark mode) and to enable third-party analytics and advertising. You can control cookies through your browser settings.
+              Our Site is not directed to children under 13. We do not knowingly collect information from minors.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Data Security</h2>
+            <h2 className="text-2xl font-semibold mb-4">8. Changes to This Policy</h2>
             <p>
-              Since all color conversions happen in your browser, your color data never leaves your device. We implement reasonable security measures to protect any information we do collect.
+              We may update this Privacy Policy occasionally. Updates will be posted on this page with the new effective date.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Changes to This Policy</h2>
-            <p>
-              We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date.
+            <h2 className="text-2xl font-semibold mb-4">9. Contact Us</h2>
+            <p className="mb-2">
+              If you have questions about this Privacy Policy or your data, please contact us at:
             </p>
-          </section>
-
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
+            <p className="mb-2">
+              📧 <a href="mailto:support@thecolorpalettestudio.com" className="text-primary hover:underline">support@thecolorpalettestudio.com</a>
+            </p>
             <p>
-              If you have questions about this Privacy Policy, please contact us at{" "}
+              or via our{" "}
               <Link href="/contact" className="text-primary hover:underline">
-                our contact page
-              </Link>.
+                Contact Page
+              </Link>
             </p>
           </section>
         </div>

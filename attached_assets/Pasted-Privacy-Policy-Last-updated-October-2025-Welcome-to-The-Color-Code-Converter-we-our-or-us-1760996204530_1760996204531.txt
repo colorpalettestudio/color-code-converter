@@ -1,0 +1,79 @@
+Privacy Policy
+
+Last updated: October 2025
+
+Welcome to The Color Code Converter (“we,” “our,” or “us”). Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use https://thecolorcodeconverter.com/
+ (the “Site”).
+
+1. Information We Collect
+
+We do not require you to sign up or submit personal data to use our tool. However, we may collect certain information automatically, including:
+
+Usage Data: Your browser type, IP address, operating system, and referring URLs.
+
+Analytics Data: Through Google Analytics, which helps us understand how visitors use our Site.
+
+Advertising Data: Through Google AdSense, which may use cookies or similar technologies to show relevant ads.
+
+2. Use of Cookies
+
+Cookies are small text files stored on your device. We use cookies to:
+
+Measure and improve Site performance
+
+Analyze visitor traffic (Google Analytics)
+
+Display personalized ads (Google AdSense)
+
+You can disable cookies in your browser settings, but parts of the Site may not function properly.
+
+To learn more about how Google uses data, visit:
+👉 https://policies.google.com/technologies/partner-sites
+
+3. Third-Party Services
+
+We use third-party services to operate and improve this website:
+
+Google Analytics: Tracks anonymized usage for traffic and behavior insights.
+
+Google AdSense: Displays relevant ads and may use cookies or device identifiers for ad personalization.
+
+You can opt out of personalized advertising by visiting:
+https://www.google.com/settings/ads
+
+We do not control or have access to data collected by these third-party tools.
+
+4. Data Protection and Retention
+
+We do not sell or share your personal data.
+We retain aggregated analytics data only as long as necessary for performance insights.
+
+5. Links to Other Websites
+
+Our Site may contain links to external websites (for example, The Color Palette Studio or other tools we own).
+We are not responsible for their content or privacy practices. Please review their policies before using those sites.
+
+6. Your Choices
+
+You can disable cookies via your browser.
+
+You can opt out of Google Analytics tracking via the Google Analytics Opt-Out Add-on
+.
+
+You can manage ad personalization in your Google Ads Settings
+.
+
+7. Children’s Privacy
+
+Our Site is not directed to children under 13. We do not knowingly collect information from minors.
+
+8. Changes to This Policy
+
+We may update this Privacy Policy occasionally. Updates will be posted on this page with the new effective date.
+
+9. Contact Us
+
+If you have questions about this Privacy Policy or your data, please contact us at:
+📧 support@thecolorpalettestudio.com
+
+or via our Contact Page
