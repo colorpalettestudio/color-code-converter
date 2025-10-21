@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { ConversionResults } from "@/components/ConversionResults";
 import { HowItWorks } from "@/components/HowItWorks";
 import { CrossPromo } from "@/components/CrossPromo";
-import { SEOContent } from "@/components/SEOContent";
+import { StaticContent } from "@/components/StaticContent";
 import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import type { ColorFormats } from "@/lib/colorUtils";
@@ -262,6 +262,9 @@ export default function Home() {
 
       <HeroSection onConvert={handleConvert} />
       
+      {/* Static Publisher Content for SEO */}
+      <StaticContent />
+      
       {/* Ad Placeholder - Top */}
       <div className="ad-slot-placeholder" data-testid="ad-slot-top">
         <div className="ad-label">Advertisement</div>
@@ -304,8 +307,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
-      <SEOContent />
       
       {/* Ad Placeholder - Bottom */}
       <div className="ad-slot-placeholder" data-testid="ad-slot-bottom">
