@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Link } from "wouter";
-import { Palette, Code, FileText } from "lucide-react";
 
 export default function AboutColorCodes() {
   return (
@@ -65,14 +64,16 @@ export default function AboutColorCodes() {
             {" "}— to help you instantly translate between HEX, RGB, HSL, and CMYK.
           </p>
 
-          {/* Screenshot Placeholder 1 */}
-          <div className="my-8 p-8 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center">
-            <Palette className="h-12 w-12 mx-auto mb-3 text-muted-foreground/40" />
-            <p className="text-muted-foreground text-sm font-semibold">
-              Screenshot placeholder: Color converter tool showing HEX input
-            </p>
-            <p className="text-xs text-muted-foreground mt-2">
-              Add a screenshot of the color converter with a HEX color entered
+          {/* Screenshot 1: HEX Input */}
+          <div className="my-8 rounded-lg border overflow-hidden shadow-lg">
+            <img 
+              src="/images/screenshot-1-hex-input.png" 
+              alt="Color Code Converter with HEX color #F4A261 entered in the input field"
+              className="w-full"
+              loading="lazy"
+            />
+            <p className="text-xs text-center text-muted-foreground py-2 bg-muted/30">
+              Enter any color code to start converting
             </p>
           </div>
 
@@ -103,14 +104,16 @@ export default function AboutColorCodes() {
             product packaging in print.
           </p>
 
-          {/* Screenshot Placeholder 2 */}
-          <div className="my-8 p-8 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center">
-            <Code className="h-12 w-12 mx-auto mb-3 text-muted-foreground/40" />
-            <p className="text-muted-foreground text-sm font-semibold">
-              Screenshot placeholder: Conversion results showing all formats
-            </p>
-            <p className="text-xs text-muted-foreground mt-2">
-              Add a screenshot showing the converted results in HEX, RGB, HSL, and CMYK
+          {/* Screenshot 2: Conversion Results */}
+          <div className="my-8 rounded-lg border overflow-hidden shadow-lg">
+            <img 
+              src="/images/screenshot-2-conversion-results.png" 
+              alt="Color conversion results showing HEX, RGB, HSL, and CMYK formats with color swatches"
+              className="w-full"
+              loading="lazy"
+            />
+            <p className="text-xs text-center text-muted-foreground py-2 bg-muted/30">
+              Instantly see all color formats with visual previews
             </p>
           </div>
 
@@ -158,14 +161,16 @@ export default function AboutColorCodes() {
           
           <p>No matter what your role is, color codes are how you keep a brand consistent across platforms.</p>
 
-          {/* Screenshot Placeholder 3 */}
-          <div className="my-8 p-8 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center">
-            <FileText className="h-12 w-12 mx-auto mb-3 text-muted-foreground/40" />
-            <p className="text-muted-foreground text-sm font-semibold">
-              Screenshot placeholder: Export options (PDF, PNG)
-            </p>
-            <p className="text-xs text-muted-foreground mt-2">
-              Add a screenshot showing the export dropdown with PDF and PNG options
+          {/* Screenshot 3: Export Options */}
+          <div className="my-8 rounded-lg border overflow-hidden shadow-lg">
+            <img 
+              src="/images/screenshot-3-export-options.png" 
+              alt="Export dropdown menu showing PDF, PNG, and Adobe Swatch (.ase) export options"
+              className="w-full"
+              loading="lazy"
+            />
+            <p className="text-xs text-center text-muted-foreground py-2 bg-muted/30">
+              Export your palettes as PDF, PNG, or Adobe Swatch files
             </p>
           </div>
 
