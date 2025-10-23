@@ -1,0 +1,51 @@
+Perfect — here’s the full SEO metadata package for that post, ready to drop into your <head> section or your Replit/HTML page frontmatter 👇
+
+🧩 SEO Title (60–65 characters)
+
+What Are Color Codes? HEX, RGB, HSL & CMYK Explained | The Color Palette Studio
+
+✅ Reasoning:
+
+Starts with a keyword phrase (“What Are Color Codes?”)
+
+Includes “HEX, RGB, HSL & CMYK” for SEO density
+
+Ends with your brand name for authority
+
+🪞 Meta Description (155–165 characters)
+
+Learn how color codes like HEX, RGB, HSL, and CMYK work and instantly convert them using our free Color Code Converter for designers and brand owners.
+
+✅ Reasoning:
+
+Hits multiple search intents: “learn,” “convert,” and “free tool”
+
+Includes both educational and action-based keywords
+
+Fits perfectly within Google’s recommended character limits
+
+🏷️ Suggested Meta Tags
+<meta name="title" content="What Are Color Codes? HEX, RGB, HSL & CMYK Explained | The Color Palette Studio">
+<meta name="description" content="Learn how color codes like HEX, RGB, HSL, and CMYK work and instantly convert them using our free Color Code Converter for designers and brand owners.">
+<meta name="keywords" content="color codes, hex to rgb, rgb to cmyk, hsl converter, color converter tool, color palette studio, web design colors, print color conversion, color formats explained">
+<meta property="og:title" content="What Are Color Codes? HEX, RGB, HSL & CMYK Explained | The Color Palette Studio">
+<meta property="og:description" content="Learn how color codes like HEX, RGB, HSL, and CMYK work and instantly convert them using our free Color Code Converter for designers and brand owners.">
+<meta property="og:url" content="https://www.thecolorcodeconverter.com/blog/what-are-color-codes">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://www.thecolorcodeconverter.com/images/color-code-converter-preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Are Color Codes? HEX, RGB, HSL & CMYK Explained">
+<meta name="twitter:description" content="Understand HEX, RGB, HSL, and CMYK color codes and convert them instantly with our free tool for designers.">
+<meta name="twitter:image" content="https://www.thecolorcodeconverter.com/images/color-code-converter-preview.jpg">
+
+🔍 Bonus tip for AdSense approval
+
+Make sure this blog page:
+
+Has at least one image (you can reuse your tool preview image)
+
+Uses proper <h2> headings like in the version I wrote above
+
+Is linked in your header and footer (just for the crawler)
+
+Has no ads until you’re approved
