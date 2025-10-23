@@ -31,12 +31,12 @@ export default function AboutColorCodes() {
       <div className="h-14" />
 
       {/* Hero Section */}
-      <section className="py-12 px-4 bg-gradient-to-br from-primary/10 via-background to-background">
-        <div className="container mx-auto max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+      <section className="py-12 px-6 md:px-8 bg-gradient-to-br from-primary/10 via-background to-background">
+        <div className="container mx-auto max-w-4xl px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground leading-tight">
             Understanding Color Codes: The Secret Language of Design
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             If you've ever worked with digital or print colors, you've probably seen mysterious codes like #F4A261, 
             rgb(244,162,97), or cmyk(3%,44%,71%,0%). These are color codes — the universal language that helps 
             designers, developers, and printers speak in exact shades.
@@ -45,8 +45,8 @@ export default function AboutColorCodes() {
       </section>
 
       {/* Main Content */}
-      <article className="py-12 px-4">
-        <div className="container mx-auto max-w-4xl prose prose-slate dark:prose-invert max-w-none">
+      <article className="py-12 px-6 md:px-8">
+        <div className="container mx-auto max-w-4xl px-4 prose prose-slate dark:prose-invert prose-lg">
           <p className="text-lg mb-6">
             Whether you're designing a logo, building a website, or creating a brand guide, learning how to read and 
             convert these codes will save you from mismatched colors and endless frustration.
