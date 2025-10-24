@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { HeroSection } from "@/components/HeroSection";
 import { ConversionResults } from "@/components/ConversionResults";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -250,6 +251,25 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Use the Converter | Color Code Converter Tool</title>
+        <meta 
+          name="description" 
+          content="Convert between HEX, RGB, HSL, and CMYK color formats instantly. Free color converter tool with export options. No sign-up required." 
+        />
+        <meta 
+          name="keywords" 
+          content="color converter, hex to rgb converter, rgb to cmyk, hsl converter, color code tool, convert hex, convert rgb, color format converter" 
+        />
+        <meta property="og:title" content="Use the Converter | Color Code Converter Tool" />
+        <meta property="og:description" content="Convert between HEX, RGB, HSL, and CMYK color formats instantly. Free tool with export options." />
+        <meta property="og:url" content="https://thecolorcodeconverter.com/converter" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Use the Converter | Color Code Converter" />
+        <meta name="twitter:description" content="Instantly convert between HEX, RGB, HSL, and CMYK color formats." />
+      </Helmet>
+      
       <Navigation />
 
       {/* Spacer to account for fixed header */}

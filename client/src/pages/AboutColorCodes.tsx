@@ -7,22 +7,22 @@ export default function AboutColorCodes() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>What Are Color Codes? HEX, RGB, HSL & CMYK Explained | The Color Palette Studio</title>
+        <title>Color Code Converter | Free HEX, RGB, HSL & CMYK Converter Tool</title>
         <meta 
           name="description" 
-          content="Learn how color codes like HEX, RGB, HSL, and CMYK work and instantly convert them using our free Color Code Converter for designers and brand owners." 
+          content="Free color code converter for designers and developers. Instantly convert between HEX, RGB, HSL, and CMYK formats. Export as PDF, PNG, or Adobe Swatch. No sign-up required." 
         />
         <meta 
           name="keywords" 
-          content="color codes, hex to rgb, rgb to cmyk, hsl converter, color converter tool, color palette studio, web design colors, print color conversion, color formats explained" 
+          content="color code converter, hex to rgb, rgb to cmyk, hsl converter, color converter tool, free color converter, web design colors, print color conversion, color formats" 
         />
-        <meta property="og:title" content="What Are Color Codes? HEX, RGB, HSL & CMYK Explained | The Color Palette Studio" />
-        <meta property="og:description" content="Learn how color codes like HEX, RGB, HSL, and CMYK work and instantly convert them using our free Color Code Converter for designers and brand owners." />
-        <meta property="og:url" content="https://thecolorcodeconverter.com/about-color-codes" />
-        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Color Code Converter | Free HEX, RGB, HSL & CMYK Converter Tool" />
+        <meta property="og:description" content="Free color code converter for designers and developers. Instantly convert between HEX, RGB, HSL, and CMYK formats. Export as PDF, PNG, or Adobe Swatch." />
+        <meta property="og:url" content="https://thecolorcodeconverter.com/" />
+        <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="What Are Color Codes? HEX, RGB, HSL & CMYK Explained" />
-        <meta name="twitter:description" content="Understand HEX, RGB, HSL, and CMYK color codes and convert them instantly with our free tool for designers." />
+        <meta name="twitter:title" content="Color Code Converter | Free HEX, RGB, HSL & CMYK Tool" />
+        <meta name="twitter:description" content="Instantly convert between HEX, RGB, HSL, and CMYK color formats. Free, fast, and no sign-up required." />
       </Helmet>
 
       <Navigation />
@@ -55,7 +55,7 @@ export default function AboutColorCodes() {
           <p className="text-lg mb-8">
             That's exactly why we built the{" "}
             <Link 
-              href="/" 
+              href="/converter" 
               className="text-primary hover:underline font-semibold"
               data-testid="link-color-converter"
             >
@@ -123,7 +123,7 @@ export default function AboutColorCodes() {
           <p>
             The{" "}
             <Link 
-              href="/" 
+              href="/converter" 
               className="text-primary hover:underline font-semibold"
               data-testid="link-free-color-converter"
             >
@@ -268,7 +268,7 @@ export default function AboutColorCodes() {
           <p>
             With tools like the{" "}
             <Link 
-              href="/" 
+              href="/converter" 
               className="text-primary hover:underline font-semibold"
               data-testid="link-color-converter-final"
             >
