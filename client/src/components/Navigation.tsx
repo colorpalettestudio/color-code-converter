@@ -7,7 +7,7 @@ export function Navigation() {
 
   const navLinks = [
     { href: "/", label: "Home", icon: Home, testId: "link-home" },
-    { href: "/about-color-codes", label: "About Color Codes", icon: BookOpen, testId: "link-about-color-codes" },
+    { href: "/converter", label: "Use the Converter", icon: BookOpen, testId: "link-converter" },
   ];
 
   return (
