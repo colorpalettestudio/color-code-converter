@@ -1,4 +1,10 @@
 import { useEffect } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export function StaticContent() {
   useEffect(() => {
@@ -116,33 +122,47 @@ export function StaticContent() {
         <hr className="my-8" />
 
         {/* FAQ Section */}
-        <section aria-labelledby="converter-faq" className="prose prose-slate dark:prose-invert max-w-none">
-          <h2 id="converter-faq" className="text-3xl font-bold mb-6">Color Code Converter: FAQ</h2>
+        <section aria-labelledby="converter-faq">
+          <h2 id="converter-faq" className="text-3xl font-bold mb-6">Frequently Asked Questions</h2>
 
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold mb-2">What formats does this converter support?</h3>
-              <p>HEX, RGB, HSL, and CMYK. Paste any of these and the others populate instantly.</p>
-            </div>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="faq-1" data-testid="faq-item-1">
+              <AccordionTrigger data-testid="faq-trigger-1">
+                What formats does this converter support?
+              </AccordionTrigger>
+              <AccordionContent data-testid="faq-content-1">
+                HEX, RGB, HSL, and CMYK. Paste any of these and the others populate instantly.
+              </AccordionContent>
+            </AccordionItem>
 
-            <div>
-              <h3 className="text-xl font-semibold mb-2">How accurate are the conversions, especially CMYK?</h3>
-              <p>
+            <AccordionItem value="faq-2" data-testid="faq-item-2">
+              <AccordionTrigger data-testid="faq-trigger-2">
+                How accurate are the conversions, especially CMYK?
+              </AccordionTrigger>
+              <AccordionContent data-testid="faq-content-2">
                 RGB/HEX/HSL conversions are exact within floating-point rounding. CMYK depends on print profiles;
                 this tool uses a common formula suitable for general reference. Always proof with your printer's ICC profile for final print work.
-              </p>
-            </div>
+              </AccordionContent>
+            </AccordionItem>
 
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Can I export or share my results?</h3>
-              <p>Yes—copy any value in one click or export a quick reference as PNG/PDF.</p>
-            </div>
+            <AccordionItem value="faq-3" data-testid="faq-item-3">
+              <AccordionTrigger data-testid="faq-trigger-3">
+                Can I export or share my results?
+              </AccordionTrigger>
+              <AccordionContent data-testid="faq-content-3">
+                Yes—copy any value in one click or export a quick reference as PNG/PDF.
+              </AccordionContent>
+            </AccordionItem>
 
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Do I need an account?</h3>
-              <p>No. The converter is free and works without sign-up.</p>
-            </div>
-          </div>
+            <AccordionItem value="faq-4" data-testid="faq-item-4">
+              <AccordionTrigger data-testid="faq-trigger-4">
+                Do I need an account?
+              </AccordionTrigger>
+              <AccordionContent data-testid="faq-content-4">
+                No. The converter is free and works without sign-up.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </section>
       </div>
     </div>
