@@ -6,8 +6,8 @@ export function Navigation() {
   const [location] = useLocation();
 
   const navLinks = [
-    { href: "/", label: "Home", icon: Home, testId: "link-home" },
-    { href: "/converter", label: "Use the Converter", icon: BookOpen, testId: "link-converter" },
+    { href: "/", label: "Converter", icon: Home, testId: "link-home" },
+    { href: "/about", label: "About", icon: BookOpen, testId: "link-about" },
   ];
 
   return (

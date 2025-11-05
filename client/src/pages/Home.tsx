@@ -252,22 +252,22 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Use the Converter | Color Code Converter Tool</title>
+        <title>Color Code Converter | Free HEX, RGB, HSL & CMYK Converter Tool</title>
         <meta 
           name="description" 
-          content="Convert between HEX, RGB, HSL, and CMYK color formats instantly. Free color converter tool with export options. No sign-up required." 
+          content="Free online color converter for designers. Convert between HEX, RGB, HSL, and CMYK formats instantly. Export as PDF, PNG, or Adobe Swatch. No sign-up required." 
         />
         <meta 
           name="keywords" 
-          content="color converter, hex to rgb converter, rgb to cmyk, hsl converter, color code tool, convert hex, convert rgb, color format converter" 
+          content="color converter, hex to rgb, rgb to cmyk, hsl converter, color code tool, hex converter, rgb converter, cmyk converter, color format converter, designer tools" 
         />
-        <meta property="og:title" content="Use the Converter | Color Code Converter Tool" />
-        <meta property="og:description" content="Convert between HEX, RGB, HSL, and CMYK color formats instantly. Free tool with export options." />
-        <meta property="og:url" content="https://thecolorcodeconverter.com/converter" />
+        <meta property="og:title" content="Color Code Converter | Free HEX, RGB, HSL & CMYK Converter" />
+        <meta property="og:description" content="Free online color converter for designers. Convert between HEX, RGB, HSL, and CMYK formats instantly with export options." />
+        <meta property="og:url" content="https://thecolorcodeconverter.com/" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Use the Converter | Color Code Converter" />
-        <meta name="twitter:description" content="Instantly convert between HEX, RGB, HSL, and CMYK color formats." />
+        <meta name="twitter:title" content="Color Code Converter | Free Color Format Tool" />
+        <meta name="twitter:description" content="Convert between HEX, RGB, HSL, and CMYK color formats instantly. Free tool for designers." />
       </Helmet>
       
       <Navigation />
@@ -276,23 +276,6 @@ export default function Home() {
       <div className="h-14" />
 
       <HeroSection onConvert={handleConvert} />
-      
-      {/* Static Publisher Content for SEO */}
-      <StaticContent />
-      
-      {/* Ad Placeholder - Top */}
-      <div className="ad-slot-placeholder" data-testid="ad-slot-top">
-        <div className="ad-label">Advertisement</div>
-        <div className="ad-choices"></div>
-        <div className="ad-content">
-          <div className="ad-image">☺</div>
-          <div className="ad-text">
-            <div className="ad-headline">Professional Color Tools for Designers - Try Free</div>
-            <div className="ad-url">www.adobe.com/color</div>
-            <div className="ad-description">Create perfect color palettes with Adobe Color. Access millions of color themes and export directly to Creative Cloud apps.</div>
-          </div>
-        </div>
-      </div>
       
       <ConversionResults 
         colors={colors} 
@@ -307,35 +290,12 @@ export default function Home() {
         onClearPalette={handleClearPalette}
         onAddColor={handleAddColor}
       />
+      
       <HowItWorks />
       <CrossPromo />
       
-      {/* Ad Placeholder - Middle */}
-      <div className="ad-slot-placeholder ad-text-only" data-testid="ad-slot-middle">
-        <div className="ad-label">Advertisement</div>
-        <div className="ad-choices"></div>
-        <div className="ad-content">
-          <div className="ad-text">
-            <div className="ad-headline">Canva Pro - Design Anything. Publish Anywhere.</div>
-            <div className="ad-url">www.canva.com</div>
-            <div className="ad-description">Join 100M+ users creating stunning designs with Canva Pro. Access 100M+ premium photos, videos, and graphics. Collaborate in real-time. Free 30-day trial.</div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Ad Placeholder - Bottom */}
-      <div className="ad-slot-placeholder" data-testid="ad-slot-bottom">
-        <div className="ad-label">Advertisement</div>
-        <div className="ad-choices"></div>
-        <div className="ad-content">
-          <div className="ad-image">☺</div>
-          <div className="ad-text">
-            <div className="ad-headline">Figma - The Collaborative Design Platform</div>
-            <div className="ad-url">www.figma.com</div>
-            <div className="ad-description">Design, prototype, and collaborate all in one place. Free for individuals. Used by teams at Microsoft, Uber, Airbnb and more.</div>
-          </div>
-        </div>
-      </div>
+      {/* Static Publisher Content for SEO */}
+      <StaticContent />
       
       <Footer />
     </div>
