@@ -2,11 +2,25 @@
 
 ## Overview
 
-A free, SEO-optimized web application for converting color codes between multiple formats (HEX, RGB, HSL, CMYK). Built as a utility-first tool targeting designers and developers who need quick color format conversions. The application supports batch conversion, palette management, and export capabilities to various formats including PDF, PNG, and Adobe Swatch Exchange (.ase).
+A free, SEO-optimized web application for converting color codes between multiple formats (HEX, RGB, HSL, CMYK). Built as a designer-friendly, utility-first tool targeting graphic designers and developers who need quick color format conversions. The application supports batch conversion, palette management, and export capabilities to various formats including PDF, PNG, and Adobe Swatch Exchange (.ase).
+
+**Key Design Philosophy**: Converter-first experience optimized for designers who want immediate, intuitive access to color conversion without distractions. Educational content is available but secondary to the tool itself.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+
+Contact email: sam@thecolorpalettestudio.com
+
+## Recent Changes (November 2025)
+
+**Major UX Redesign - Converter-First Approach**:
+- Converter is now the homepage (/) for immediate access
+- Educational content moved to /about page
+- Removed all placeholder AdSense advertisements for cleaner, designer-focused experience
+- Conversion results now appear directly below the convert button with helpful empty state
+- Updated all navigation and internal links to reflect new structure
+- Sitemap updated to match new route structure
 
 ## System Architecture
 
@@ -17,9 +31,14 @@ Preferred communication style: Simple, everyday language.
 **UI Component System**: Shadcn/ui components built on Radix UI primitives with Tailwind CSS for styling. The design follows Material Design principles combined with inspiration from Coolors and Adobe Color, emphasizing clarity and designer-friendly aesthetics.
 
 **Routing**: Wouter for lightweight client-side routing (single-page application)
+- `/` - Color converter tool (Home.tsx)
+- `/about` - Educational content about color codes (AboutColorCodes.tsx)
+- `/privacy-policy` - Privacy policy
+- `/terms` - Terms of service
+- `/contact` - Contact page
 
 **State Management**: 
-- React hooks (useState) for local component state
+- React hooks (useState) for local component state (note: state does not persist across page navigation - this is expected SPA behavior)
 - TanStack Query (React Query) for server state management and caching
 - Theme context (ThemeProvider) for dark/light mode
 
@@ -61,11 +80,15 @@ Preferred communication style: Simple, everyday language.
 
 **UI/UX Features**:
 - Fixed header with theme toggle (light/dark mode) at the top-right
+- Simple navigation: "Converter" (home) and "About" links
+- Conversion results appear directly below convert button for optimal flow
+- Empty state with helpful message when no colors are converted
 - Inline format selector with checkboxes (HEX, RGB, HSL, CMYK) integrated into results header
 - Click-to-copy individual color codes with hover elevation and checkmark feedback
 - Single-click color picker activation with full drag support
 - Consolidated action buttons (Add Color, Copy Palette, Export dropdown, More actions)
 - Theme preference persists via localStorage
+- Color Palette Fixer cross-promotion integrated (only external advertisement)
 
 **SEO Optimization**:
 - Comprehensive meta tags (Open Graph, Twitter Cards)
