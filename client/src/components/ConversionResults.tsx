@@ -77,14 +77,30 @@ export function ConversionResults({
     }
   }, [editingColorId]);
 
-  if (colors.length === 0) return null;
-
   const allFormats = [
     { key: "hex", label: "HEX" },
     { key: "rgb", label: "RGB" },
     { key: "hsl", label: "HSL" },
     { key: "cmyk", label: "CMYK" },
   ];
+
+  if (colors.length === 0) {
+    return (
+      <section id="conversion-results" className="py-12 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-6xl">
+          <Card>
+            <CardContent className="py-12 text-center">
+              <Palette className="h-16 w-16 mx-auto mb-4 text-muted-foreground/40" />
+              <h3 className="text-lg font-semibold mb-2 text-muted-foreground">No colors converted yet</h3>
+              <p className="text-sm text-muted-foreground/70">
+                Enter a color code above to see instant conversions between HEX, RGB, HSL, and CMYK formats.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    );
+  }
 
   const visibleFormats = allFormats.filter(f => selectedFormats.has(f.key));
 

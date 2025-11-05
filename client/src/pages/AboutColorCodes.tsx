@@ -268,7 +268,7 @@ export default function AboutColorCodes() {
           <p>
             With tools like the{" "}
             <Link 
-              href="/converter" 
+              href="/" 
               className="text-primary hover:underline font-semibold"
               data-testid="link-color-converter-final"
             >
