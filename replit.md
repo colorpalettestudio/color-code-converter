@@ -4,7 +4,7 @@
 
 A free, SEO-optimized web application for converting color codes between multiple formats (HEX, RGB, HSL, CMYK). Built as a designer-friendly, utility-first tool targeting graphic designers and developers who need quick color format conversions. The application supports batch conversion, palette management, and export capabilities to various formats including PDF, PNG, and Adobe Swatch Exchange (.ase).
 
-**Key Design Philosophy**: Converter-first experience optimized for designers who want immediate, intuitive access to color conversion without distractions. Educational content is available but secondary to the tool itself.
+**Key Design Philosophy**: Single-page, converter-first experience optimized for designers who want immediate, intuitive access to color conversion without distractions. Everything they need is on one page.
 
 ## User Preferences
 
@@ -14,13 +14,15 @@ Contact email: sam@thecolorpalettestudio.com
 
 ## Recent Changes (November 2025)
 
-**Major UX Redesign - Converter-First Approach**:
-- Converter is now the homepage (/) for immediate access
-- Educational content moved to /about page
-- Removed all placeholder AdSense advertisements for cleaner, designer-focused experience
-- Conversion results now appear directly below the convert button with helpful empty state
-- Updated all navigation and internal links to reflect new structure
-- Sitemap updated to match new route structure
+**Single-Page Website Design**:
+- Simplified to a single-page website with all content on the homepage
+- Removed About page and navigation menu for a cleaner, more focused experience
+- Header shows site branding (logo + title) and theme toggle only
+- Converter tool, educational content, FAQs, and cross-promotion all on one scrollable page
+- Removed all placeholder AdSense advertisements for designer-focused experience
+- Conversion results appear directly below the convert button with helpful empty state
+- FAQ section converted to accordion-style expandable tabs
+- Sitemap updated to reflect single-page structure
 
 ## System Architecture
 
@@ -30,12 +32,11 @@ Contact email: sam@thecolorpalettestudio.com
 
 **UI Component System**: Shadcn/ui components built on Radix UI primitives with Tailwind CSS for styling. The design follows Material Design principles combined with inspiration from Coolors and Adobe Color, emphasizing clarity and designer-friendly aesthetics.
 
-**Routing**: Wouter for lightweight client-side routing (single-page application)
-- `/` - Color converter tool (Home.tsx)
-- `/about` - Educational content about color codes (AboutColorCodes.tsx)
-- `/privacy-policy` - Privacy policy
-- `/terms` - Terms of service
-- `/contact` - Contact page
+**Routing**: Wouter for lightweight client-side routing
+- `/` - Single-page color converter tool (Home.tsx) - contains all content
+- `/privacy-policy` - Privacy policy (footer link)
+- `/terms` - Terms of service (footer link)
+- `/contact` - Contact page (footer link)
 
 **State Management**: 
 - React hooks (useState) for local component state (note: state does not persist across page navigation - this is expected SPA behavior)
@@ -79,10 +80,11 @@ Contact email: sam@thecolorpalettestudio.com
 - All exports happen client-side for privacy and speed
 
 **UI/UX Features**:
-- Fixed header with theme toggle (light/dark mode) at the top-right
-- Simple navigation: "Converter" (home) and "About" links
+- Fixed header with site branding (palette icon + "Color Code Converter" title) and theme toggle
+- Single-page design: all content on one scrollable homepage
 - Conversion results appear directly below convert button for optimal flow
 - Empty state with helpful message when no colors are converted
+- Accordion-style FAQ section with expandable/collapsible tabs
 - Inline format selector with checkboxes (HEX, RGB, HSL, CMYK) integrated into results header
 - Click-to-copy individual color codes with hover elevation and checkmark feedback
 - Single-click color picker activation with full drag support
