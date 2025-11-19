@@ -23,6 +23,8 @@ Contact email: sam@thecolorpalettestudio.com
 - Conversion results appear directly below the convert button with helpful empty state
 - FAQ section converted to accordion-style expandable tabs
 - Sitemap updated to reflect single-page structure
+- Background updated to pure white (100% lightness in light mode)
+- Meta Pixel (Facebook tracking) installed in index.html for analytics
 
 ## System Architecture
 
